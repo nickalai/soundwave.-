@@ -99,6 +99,15 @@ public class Notes : MonoBehaviour
     // Performs action when a note is hit
     public void OnHit()
     {
+        if (gm.comboCounter == 0)
+        {
+            gm.currentScore += gm.scorePerNote;
+        }
+        else if (gm.comboCounter > 0)
+        {
+            gm.currentScore += gm.scorePerNote * gm.comboCounter;
+        }
+        gm.comboCounter++;
         ReturnToPool();
     }
 
