@@ -24,12 +24,15 @@ public class LaneManager : MonoBehaviour
     // Queue that contains all Notes currently on screen within this lane.
     Queue<Notes> trackedNotes = new Queue<Notes>();
 
+    // Queue that contains all HoldNotes currently on screen within this lane.
+    Queue<HoldNotes> trackedHoldNotes = new Queue<HoldNotes>();
+
     // Reference to the GameManager. Provides access to the Notes pool and other parameters.
     GameManager gm;
 
     // Lifetime boundaries.
     float spawnZ = 0f;
-    float despawnZ = 0f;
+    public float despawnZ = 0f;
 
     // Index of the next event to check for spawn timing in this lane.
     int pendingEventIndex = 0;
@@ -94,6 +97,12 @@ public class LaneManager : MonoBehaviour
         {
             trackedNotes.Dequeue().OnClear();
         }
+        // Clears out tracked hold notes.
+        int numToClearHold = trackedHoldNotes.Count;
+        for (int i = 0; i < numToClearHold; ++i)
+        {
+            trackedHoldNotes.Dequeue().OnClear();
+        }
     }
 
     // Start is called before the first frame update
@@ -101,8 +110,8 @@ public class LaneManager : MonoBehaviour
     {
         // Gets the vertical bounds of the camera. Offset by a bit to allow for offscrean spawning/removal
         float cameraOffsetZ = -Camera.main.transform.position.z;
-        spawnZ = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, cameraOffsetZ)).y + 1f;
-        despawnZ = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, cameraOffsetZ)).z - 1f;
+        spawnZ = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, cameraOffsetZ)).z + 3f;
+        despawnZ = -12f;//Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, cameraOffsetZ)).z - 1f; PROPER WAY, Currently hard coded.
 
         defaultScale = targetVisuals.transform.localScale;
     }
@@ -110,10 +119,15 @@ public class LaneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Clears out invalid entries.
+        // Clears out invalid hit notes.
         while (trackedNotes.Count > 0 && trackedNotes.Peek().IsNoteMissed())
         {
             trackedNotes.Dequeue();
+        }
+        // Clears out invalid hold notes
+        while (trackedHoldNotes.Count > 0 && trackedHoldNotes.Peek().IsNoteMissed())
+        {
+            trackedHoldNotes.Dequeue();
         }
         // Checks for new spawns.
         CheckSpawnNext();
@@ -125,6 +139,7 @@ public class LaneManager : MonoBehaviour
         }
         else if (Input.GetKey(keyboardButton))
         {
+            CheckHoldNoteHit();
             SetScaleHold();
         }
         else if (Input.GetKeyUp(keyboardButton))
@@ -161,6 +176,16 @@ public class LaneManager : MonoBehaviour
         }
     }
 
+    // Checks if a HoldNote is hit. If hit, will perform the Hit and remove the object from trackedNotes.
+    public void CheckHoldNoteHit()
+    {
+        if (trackedHoldNotes.Count > 0 && trackedHoldNotes.Peek().IsNoteHittable())
+        {
+            HoldNotes hitHoldNote = trackedHoldNotes.Dequeue();
+            hitHoldNote.OnHit();
+        }
+    }
+
     // Checks if the next Note should be spawned. If true, spawns the Note and adds it to trackedNotes.
     void CheckSpawnNext()
     {
@@ -174,7 +199,11 @@ public class LaneManager : MonoBehaviour
             Notes freshNote = gm.GetFreshNote();
             freshNote.InitializeNote(evt, this, gm);
 
+            HoldNotes freshHoldNote = gm.GetFreshHoldNote();
+            freshHoldNote.InitializeNote(evt, this, gm);
+
             trackedNotes.Enqueue(freshNote);
+            trackedHoldNotes.Enqueue(freshHoldNote);
 
             pendingEventIndex++;
         }
@@ -186,8 +215,8 @@ public class LaneManager : MonoBehaviour
         laneEvents.Add(evt);
     }
 
-    // Checks to see if the string value passed in matches any of the configured values specified in the matchedPayloads list.
-    public bool DoesMatchPayload(string payload)
+    // Checks to see if the string value passed in matches any of the configured values specified in the matchedPayloads list for HIT notes.
+    public bool DoesMatchPayloadHit(string payload)
     {
         bool isMatched = false;
 
@@ -199,7 +228,21 @@ public class LaneManager : MonoBehaviour
                 break;
             }
         }
+        return isMatched;
+    }
 
+    // Checks to see if the string value passed in matches any of the configured values specified in the matchedPayloads list for HOLD notes.
+    public bool DoesMatchPayloadHold(string payload)
+    {
+        bool isMatched = false;
+        for (int i = 0; i < matchedPayloads.Count; ++i)
+        {
+            if (payload.Length == 2 && (payload.Substring(0, 1)) == matchedPayloads[i] && (payload.Substring(1, 1)) == "h")
+            {
+                isMatched = true;
+                break;
+            }
+        }
         return isMatched;
     }
 
