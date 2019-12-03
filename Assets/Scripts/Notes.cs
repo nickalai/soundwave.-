@@ -43,7 +43,6 @@ public class Notes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UpdateNoteLength();
         UpdateNotePosition();
 
         if (transform.position.z <= lm.DespawnZ)
@@ -51,17 +50,6 @@ public class Notes : MonoBehaviour
             gm.ReturnNoteToPool(this);
             Reset();
         }
-    }
-
-    // Updates the length of the note relative to the speed of the note
-    void UpdateNoteLength()
-    {
-        float baseUnitHeight = visuals.transform.localScale.z;
-        float targetUnitHeight = gm.WindowSizeInUnits * 2f; // Double it for before/after.
-
-        Vector3 scale = transform.localScale;
-        scale.z = targetUnitHeight / baseUnitHeight;
-        transform.localScale = scale;
     }
 
     // Updates the note's position along the lane based on the current audio position
