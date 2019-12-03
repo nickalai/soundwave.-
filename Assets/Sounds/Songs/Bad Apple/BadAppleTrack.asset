@@ -20,10 +20,10 @@ MonoBehaviour:
     mEndSample: 75137
   - mStartSample: 94335
     mEndSample: 94335
-  - mStartSample: 113202
-    mEndSample: 113202
-  - mStartSample: 132731
-    mEndSample: 132731
+  - mStartSample: 114671
+    mEndSample: 114671
+  - mStartSample: 133845
+    mEndSample: 133845
   - mStartSample: 151598
     mEndSample: 151598
   - mStartSample: 171127
@@ -222,6 +222,14 @@ MonoBehaviour:
   - mTextVal: 1
   - mTextVal: 1
   - mTextVal: 1
-  - mTextVal: 4
+  - mTextVal: 4h
+  - mTextVal: 4h
+  - mTextVal: 3
+  - mTextVal: 3
+  - mTextVal: 3
   - mTextVal: 2
-  _TextPayloadIdxs: 0000000001000000020000000300000004000000
+  - mTextVal: 3
+  - mTextVal: 3
+  - mTextVal: 2h
+  - mTextVal: 2h
+  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
