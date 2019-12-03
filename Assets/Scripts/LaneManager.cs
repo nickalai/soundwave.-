@@ -110,7 +110,7 @@ public class LaneManager : MonoBehaviour
     {
         // Gets the vertical bounds of the camera. Offset by a bit to allow for offscrean spawning/removal
         float cameraOffsetZ = -Camera.main.transform.position.z;
-        spawnZ = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, cameraOffsetZ)).z + 3f;
+        spawnZ = 3f; // Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, cameraOffsetZ)).z + 3f; PROPER WAY, Currently hard coded.
         despawnZ = -9f;//Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, cameraOffsetZ)).z - 1f; PROPER WAY, Currently hard coded.
 
         defaultScale = targetVisuals.transform.localScale;

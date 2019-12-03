@@ -766,7 +766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventID: BadAppleTest
   hitWindowRangeInMS: 80
-  noteSpeed: 10
+  noteSpeed: 12
   notePrefab: {fileID: 1218569239190867776, guid: ec9e02b6f8922174d817a836f4d32cee,
     type: 3}
   holdNotePrefab: {fileID: 8468513820525914797, guid: 450a9b9a626b63f4fbe880a6661821d8,
@@ -776,7 +776,7 @@ MonoBehaviour:
   - {fileID: 82167266}
   - {fileID: 1189425933}
   - {fileID: 671974424}
-  leadInTime: 5
+  leadInTime: 3
   aus: {fileID: 580882065}
   currentScore: 0
   scorePerNote: 300
