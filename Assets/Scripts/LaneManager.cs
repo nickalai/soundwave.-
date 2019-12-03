@@ -111,7 +111,7 @@ public class LaneManager : MonoBehaviour
         // Gets the vertical bounds of the camera. Offset by a bit to allow for offscrean spawning/removal
         float cameraOffsetZ = -Camera.main.transform.position.z;
         spawnZ = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, cameraOffsetZ)).z + 3f;
-        despawnZ = -12f;//Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, cameraOffsetZ)).z - 1f; PROPER WAY, Currently hard coded.
+        despawnZ = -9f;//Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, cameraOffsetZ)).z - 1f; PROPER WAY, Currently hard coded.
 
         defaultScale = targetVisuals.transform.localScale;
     }
@@ -122,11 +122,13 @@ public class LaneManager : MonoBehaviour
         // Clears out invalid hit notes.
         while (trackedNotes.Count > 0 && trackedNotes.Peek().IsNoteMissed())
         {
+            gm.comboCounter = 0;
             trackedNotes.Dequeue();
         }
         // Clears out invalid hold notes
         while (trackedHoldNotes.Count > 0 && trackedHoldNotes.Peek().IsNoteMissed())
         {
+            gm.comboCounter = 0;
             trackedHoldNotes.Dequeue();
         }
         // Checks for new spawns.

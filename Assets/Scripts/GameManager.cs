@@ -42,6 +42,11 @@ public class GameManager : MonoBehaviour
     // Sample range within which a viable event may be hit.
     int hitWindowRangeInSamples;
 
+    // Score tracking variables
+    public int currentScore = 0;
+    public int scorePerNote = 300;
+    public int comboCounter = 0;
+
     // Pool for containing Notes to reduce unnecessary Instatiation/Destruction.
     Stack<Notes> notePool = new Stack<Notes>();
     Stack<HoldNotes> holdNotePool = new Stack<HoldNotes>();
