@@ -289,7 +289,7 @@ PrefabInstance:
         type: 3}
       propertyPath: koreography
       value: 
-      objectReference: {fileID: 11400000, guid: c14d94267ad865b48ad270663db01dbb,
+      objectReference: {fileID: 11400000, guid: 2b79e8006e05e534bbc05f6522e84290,
         type: 2}
     - target: {fileID: 1381536615878140116, guid: b64c12340f1688642b273b9cd9f41714,
         type: 3}
@@ -764,9 +764,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2af0cc8b0de2d44bb7c78b70cd4f58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: BadAppleTest
+  eventID: Masquerade (Demo)
   hitWindowRangeInMS: 80
-  noteSpeed: 12
+  noteSpeed: 20
   notePrefab: {fileID: 1218569239190867776, guid: ec9e02b6f8922174d817a836f4d32cee,
     type: 3}
   holdNotePrefab: {fileID: 8468513820525914797, guid: 450a9b9a626b63f4fbe880a6661821d8,
