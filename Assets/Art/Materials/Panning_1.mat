@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Panning_1
+  m_Shader: {fileID: -6465566751694194690, guid: 4600733404fbedc47a2a466d2308d268,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Texture2DAsset_FEEF1D5A_Out_0:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_40A6BAE8: 1
+    - Vector1_4D7A0DC8: 0
+    - Vector1_831C70C5: 0
+    m_Colors:
+    - Color_6D6520F: {r: 0.07239553, g: 0.06585974, b: 0.0754717, a: 0}
+    - Color_A467D978: {r: 1, g: 0, b: 0, a: 0}
+    - Color_B7B09DBB: {r: 0, g: 0, b: 0, a: 0}
+    - Color_C299B30D: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_8028EF0: {r: 0, g: 1, b: 0, a: 0}
+    - Vector2_EC4419ED: {r: 0, g: 0, b: 0, a: 0}
