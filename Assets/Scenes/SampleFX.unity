@@ -292,7 +292,7 @@ PrefabInstance:
         type: 3}
       propertyPath: koreography
       value: 
-      objectReference: {fileID: 11400000, guid: 2b79e8006e05e534bbc05f6522e84290,
+      objectReference: {fileID: 11400000, guid: 7339d5ca62bf28845b5b698cdf1a2c64,
         type: 2}
     - target: {fileID: 1381536615878140116, guid: b64c12340f1688642b273b9cd9f41714,
         type: 3}
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -629,7 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -770,9 +770,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2af0cc8b0de2d44bb7c78b70cd4f58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: Masquerade (Demo)
+  eventID: demo
   hitWindowRangeInMS: 80
-  noteSpeed: 20
+  noteSpeed: 15
   notePrefab: {fileID: 1218569239190867776, guid: ec9e02b6f8922174d817a836f4d32cee,
     type: 3}
   holdNotePrefab: {fileID: 8468513820525914797, guid: 450a9b9a626b63f4fbe880a6661821d8,
@@ -785,7 +785,7 @@ MonoBehaviour:
   leadInTime: 3
   aus: {fileID: 580882065}
   currentScore: 0
-  scorePerNote: 300
+  scorePerNote: 100
   comboCounter: 0
 --- !u!4 &973986322
 Transform:
