@@ -248,6 +248,8 @@ public class GameManager : MonoBehaviour
     // Restarts the game, causing all Lanes and any active Notes to reset/clear.
     public void Restart()
     {
+        currentScore = 0;
+        comboCounter = 0;
         // Resets audio
         aus.Stop();
         aus.time = 0f;
