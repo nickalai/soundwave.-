@@ -10,16 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -2076007791, guid: aa81bbec85a3f423193272a7c6154986, type: 3}
-  m_Name: New Koreography
+  m_Name: Demo
   m_EditorClassIdentifier: 
-  mSourceClip: {fileID: 0}
+  mSourceClip: {fileID: 8300000, guid: 55615bb05ded6804cbaf6af9225c7eb4, type: 3}
   mAudioFilePath: 
-  mSampleRate: -1
+  mSampleRate: 44100
   mIgnoreLatencyOffset: 0
   mTempoSections:
-  - sectionName: New Section
+  - sectionName: main
     startSample: 0
-    samplesPerBeat: 22050
+    samplesPerBeat: 14302.702702702702
     beatsPerMeasure: 4
     bStartNewMeasure: 1
-  mTracks: []
+  - sectionName: New Section
+    startSample: 52495
+    samplesPerBeat: 14302.702702702702
+    beatsPerMeasure: 4
+    bStartNewMeasure: 1
+  mTracks:
+  - {fileID: 11400000, guid: 799f8c0a63bbb99428f8b049a81cc80f, type: 2}
