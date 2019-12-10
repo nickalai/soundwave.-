@@ -11,6 +11,7 @@ public class Notes : MonoBehaviour
     KoreographyEvent trackedEvent;
     LaneManager lm;
     GameManager gm;
+    public GameObject HitEffect_1;
 
     #endregion
     #region Return Statements
@@ -108,6 +109,10 @@ public class Notes : MonoBehaviour
             gm.currentScore += gm.scorePerNote * gm.comboCounter;
         }
         gm.comboCounter++;
+
+        Instantiate(HitEffect_1, new Vector3 (transform.position.x, -1, -6), Quaternion.identity);
+        //Destroy(HitEffect_1, 1.0f);
+
         ReturnToPool();
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
+using UnityEngine.UI;
 
 public class LaneManager : MonoBehaviour
 {
@@ -42,6 +43,13 @@ public class LaneManager : MonoBehaviour
     float scaleNormal = 1f;
     float scalePress = 1.4f;
     float scaleHold = 1.2f;
+
+    // hit fx prefab
+    public GameObject HitEffect_1;
+
+    // hit note materials
+    public Material Note;
+    public Material hitNote;
 
     #endregion
     #region Return Statements
@@ -114,6 +122,7 @@ public class LaneManager : MonoBehaviour
         despawnZ = -9f;//Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, cameraOffsetZ)).z - 1f; PROPER WAY, Currently hard coded.
 
         defaultScale = targetVisuals.transform.localScale;
+        ResetMaterial();
     }
 
     // Update is called once per frame
@@ -138,6 +147,7 @@ public class LaneManager : MonoBehaviour
         {
             CheckNoteHit();
             SetScalePress();
+            OnHitMaterial();
         }
         else if (Input.GetKey(keyboardButton))
         {
@@ -147,6 +157,7 @@ public class LaneManager : MonoBehaviour
         else if (Input.GetKeyUp(keyboardButton))
         {
             SetScaleDefault();
+            ResetMaterial();
         }
     }
 
@@ -266,4 +277,15 @@ public class LaneManager : MonoBehaviour
         AdjustScale(scaleHold);
     }
     #endregion
+
+    // Sets target material to hit material
+    public void OnHitMaterial() 
+    {
+        this.gameObject.GetComponent<MeshRenderer>().material = hitNote;
+    }
+
+    public void ResetMaterial() 
+    {
+        this.gameObject.GetComponent<MeshRenderer>().material = Note;
+    }
 }

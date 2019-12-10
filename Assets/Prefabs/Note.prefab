@@ -92,3 +92,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visuals: {fileID: 5118510085818891706}
+  HitEffect_1: {fileID: 5227569752316113758, guid: 4baf66c675f325c45bf115197ecd86c5,
+    type: 3}
