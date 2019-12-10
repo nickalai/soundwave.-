@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_pillar_blast_1
+  m_Shader: {fileID: -6465566751694194690, guid: 68d8015dc9385f941b4da348e02c522c,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Texture2DAsset_FEEF1D5A_Out_0:
+        m_Texture: {fileID: 2800000, guid: f7ff27637962b3246942449296b5f318, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_40A6BAE8: 2
+    - Vector1_4D7A0DC8: 0.5
+    - Vector1_5060A38C: 0
+    - Vector1_831C70C5: 0
+    m_Colors:
+    - Color_6D6520F: {r: 0.07239553, g: 0.06585974, b: 0.0754717, a: 0}
+    - Color_A467D978: {r: 0.13843994, g: 0.0758722, b: 0.2924528, a: 0}
+    - Color_B7B09DBB: {r: 0.3285943, g: 0.03921568, b: 0.3686275, a: 0}
+    - Vector2_8028EF0: {r: 0, g: 1, b: 0, a: 0}
+    - Vector2_EC4419ED: {r: 1, g: 0.5, b: 0, a: 0}
