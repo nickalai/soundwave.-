@@ -40,6 +40,7 @@ public class LaneManager : MonoBehaviour
 
     // Feedback Scales used for resizing buttons on press.
     Vector3 defaultScale;
+    Quaternion defaultRotation;
     float scaleNormal = 1f;
     float scalePress = 1.4f;
     float scaleHold = 1.2f;
@@ -68,6 +69,14 @@ public class LaneManager : MonoBehaviour
         get
         {
             return new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        }
+    }
+
+    public Quaternion TargetRotation
+    { 
+        get
+        {
+            return transform.rotation;
         }
     }
 
@@ -122,6 +131,7 @@ public class LaneManager : MonoBehaviour
         despawnZ = -9f;//Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, cameraOffsetZ)).z - 1f; PROPER WAY, Currently hard coded.
 
         defaultScale = targetVisuals.transform.localScale;
+        defaultRotation = targetVisuals.transform.rotation;
         ResetMaterial();
     }
 

@@ -72,6 +72,7 @@ public class HoldNotes : MonoBehaviour
         Vector3 pos = lm.TargetPosition;
         pos.z -= (gm.DelayedSampleTime - trackedEvent.StartSample) / samplesPerUnit;
         transform.position = pos;
+        transform.rotation = lm.TargetRotation;
     }
 
     // Checks whether or not you can hit a note based on the current audio sample
