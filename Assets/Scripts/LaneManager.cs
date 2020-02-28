@@ -34,9 +34,6 @@ public class LaneManager : MonoBehaviour
     // Queue that contains all Notes currently on screen within this lane.
     Queue<Notes> trackedNotes = new Queue<Notes>();
 
-    // Queue that contains all HoldNotes currently on screen within this lane.
-    Queue<HoldNotes> trackedHoldNotes = new Queue<HoldNotes>();
-
     // Reference to the GameManager. Provides access to the Notes pool and other parameters.
     GameManager gm;
 
@@ -120,12 +117,6 @@ public class LaneManager : MonoBehaviour
         {
             trackedNotes.Dequeue().OnClear();
         }
-        // Clears out tracked hold notes.
-        int numToClearHold = trackedHoldNotes.Count;
-        for (int i = 0; i < numToClearHold; ++i)
-        {
-            trackedHoldNotes.Dequeue().OnClear();
-        }
     }
 
     // Start is called before the first frame update
@@ -150,12 +141,7 @@ public class LaneManager : MonoBehaviour
             gm.comboCounter = 0;
             trackedNotes.Dequeue();
         }
-        // Clears out invalid hold notes
-        while (trackedHoldNotes.Count > 0 && trackedHoldNotes.Peek().IsNoteMissed())
-        {
-            gm.comboCounter = 0;
-            trackedHoldNotes.Dequeue();
-        }
+
         // Checks for new spawns.
         CheckSpawnNext();
         // Checks for input
@@ -165,12 +151,7 @@ public class LaneManager : MonoBehaviour
             //SetScalePress();
             OnHitMaterial();
         }
-        else if (Input.GetKey(keyboardButton))
-        {
-            CheckHoldNoteHit();
-            //SetScaleHold();
-            OnHitMaterial();
-        }
+
         else if (Input.GetKeyUp(keyboardButton))
         {
             SetScaleDefault();
@@ -206,16 +187,6 @@ public class LaneManager : MonoBehaviour
         }
     }
 
-    // Checks if a HoldNote is hit. If hit, will perform the Hit and remove the object from trackedNotes.
-    public void CheckHoldNoteHit()
-    {
-        if (trackedHoldNotes.Count > 0 && trackedHoldNotes.Peek().IsNoteHittable())
-        {
-            HoldNotes hitHoldNote = trackedHoldNotes.Dequeue();
-            hitHoldNote.OnHit();
-        }
-    }
-
     // Checks if the next Note should be spawned. If true, spawns the Note and adds it to trackedNotes.
     void CheckSpawnNext()
     {
@@ -246,11 +217,6 @@ public class LaneManager : MonoBehaviour
 
                 }
             }
-            //HoldNotes freshHoldNote = gm.GetFreshHoldNote();
-            //freshHoldNote.InitializeNote(evt, this, gm);
-
-            
-            //trackedHoldNotes.Enqueue(freshHoldNote);
             */
             pendingEventIndex++;
         }
