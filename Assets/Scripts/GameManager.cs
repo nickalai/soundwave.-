@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("The archetype to use for generating notes. Can be a prefab.")]
     public Notes notePrefab;
-    public HoldNotes holdNotePrefab;
 
     [Tooltip("The list of LaneManager objects that represent a lane for an event to travel down.")]
     public List<LaneManager> noteLanes = new List<LaneManager>();
@@ -58,7 +57,6 @@ public class GameManager : MonoBehaviour
 
     // Pool for containing Notes to reduce unnecessary Instatiation/Destruction.
     Stack<Notes> notePool = new Stack<Notes>();
-    Stack<HoldNotes> holdNotePool = new Stack<HoldNotes>();
 
     #endregion
     #region Return Statements
@@ -211,26 +209,6 @@ public class GameManager : MonoBehaviour
 
         return retObj;
     }
-    
-    // Gets a freshly activated HoldNote from the pool.
-    public HoldNotes GetFreshHoldNote()
-    {
-        HoldNotes retObj;
-
-        if (holdNotePool.Count > 0)
-        {
-            retObj = holdNotePool.Pop();
-        }
-        else
-        {
-            retObj = GameObject.Instantiate<HoldNotes>(holdNotePrefab);
-        }
-
-        retObj.gameObject.SetActive(true);
-        retObj.enabled = true;
-
-        return retObj;
-    }
 
     // Deactivates and returns a Note to the pool.
     public void ReturnNoteToPool(Notes note)
@@ -240,17 +218,6 @@ public class GameManager : MonoBehaviour
             note.enabled = false;
             note.gameObject.SetActive(false);
             notePool.Push(note);
-        }
-    }
-
-    // Deactivates and returns a HoldNote to the pool.
-    public void ReturnHoldNoteToPool(HoldNotes holdNote)
-    {
-        if (holdNote != null)
-        {
-            holdNote.enabled = false;
-            holdNote.gameObject.SetActive(false);
-            holdNotePool.Push(holdNote);
         }
     }
 
