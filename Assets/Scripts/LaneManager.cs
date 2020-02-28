@@ -45,9 +45,6 @@ public class LaneManager : MonoBehaviour
     float scalePress = 1.4f;
     float scaleHold = 1.2f;
 
-    // hit fx prefab
-    public GameObject HitEffect_1;
-
     // hit note materials
     public Material Note;
     public Material hitNote;
