@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/*
+Name: Nick Lai
+Student ID#: 2282417
+Chapman email: lai137@mail.chapman.edu
+Course Number and Section: 440-01
+Project: soundwave.-
+Contains logic for hit notes
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
@@ -111,7 +120,7 @@ public class Notes : MonoBehaviour
         }
         gm.comboCounter++;
 
-        Instantiate(HitEffect_1, new Vector3 (transform.position.x, -1, -6), Quaternion.identity);
+        Instantiate(HitEffect_1, new Vector3(transform.position.x, -1, -6), Quaternion.identity);
         //Destroy(HitEffect_1, 1.0f);
 
         ReturnToPool();
@@ -125,3 +134,6 @@ public class Notes : MonoBehaviour
 
     #endregion
 }
+
+
+//https://www.tapatalk.com/groups/koreographer/rhythm-game-note-length-t57-s20.html resource for getting hold notes in im a failure

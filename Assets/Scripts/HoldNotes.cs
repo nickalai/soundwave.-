@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/*
+Name: Nick Lai
+Student ID#: 2282417
+Chapman email: lai137@mail.chapman.edu
+Course Number and Section: 440-01
+Project: soundwave.-
+Contains logic for hold notes
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
@@ -52,7 +61,7 @@ public class HoldNotes : MonoBehaviour
             Reset();
         }
     }
-
+    /**
     // Updates the length of the note relative to the speed of the note
     void UpdateNoteLength()
     {
@@ -63,7 +72,7 @@ public class HoldNotes : MonoBehaviour
         scale.z = targetUnitHeight / baseUnitHeight;
         transform.localScale = scale;
     }
-
+    **/
     // Updates the note's position along the lane based on the current audio position
     void UpdateNotePosition()
     {

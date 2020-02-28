@@ -2,7 +2,7 @@
 Name: Nick Lai
 Student ID#: 2282417
 Chapman email: lai137@mail.chapman.edu
-Course Number and Section: 340-02
+Course Number and Section: 440-01
 Project: soundwave.-
 Contains logic for menu objects
 */
