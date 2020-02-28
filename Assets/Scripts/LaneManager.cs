@@ -156,13 +156,14 @@ public class LaneManager : MonoBehaviour
         if (Input.GetKeyDown(keyboardButton))
         {
             CheckNoteHit();
-            SetScalePress();
+            //SetScalePress();
             OnHitMaterial();
         }
         else if (Input.GetKey(keyboardButton))
         {
             CheckHoldNoteHit();
-            SetScaleHold();
+            //SetScaleHold();
+            OnHitMaterial();
         }
         else if (Input.GetKeyUp(keyboardButton))
         {
