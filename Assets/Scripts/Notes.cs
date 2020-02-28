@@ -120,7 +120,7 @@ public class Notes : MonoBehaviour
         }
         gm.comboCounter++;
 
-        Instantiate(HitEffect_1, new Vector3(transform.position.x, -1, -6), Quaternion.identity);
+        Instantiate(HitEffect_1, new Vector3(transform.position.x, 1, -11), Quaternion.identity);
         //Destroy(HitEffect_1, 1.0f);
 
         ReturnToPool();
