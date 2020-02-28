@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/*
+Name: Nick Lai
+Student ID#: 2282417
+Chapman email: lai137@mail.chapman.edu
+Course Number and Section: 440-01
+Project: soundwave.-
+Contains logic for managing the lanes
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
@@ -216,16 +225,33 @@ public class LaneManager : MonoBehaviour
         while (pendingEventIndex < laneEvents.Count && laneEvents[pendingEventIndex].StartSample < currentTime + samplesToTarget)
         {
             KoreographyEvent evt = laneEvents[pendingEventIndex];
+            string payload = evt.GetTextValue();
 
             Notes freshNote = gm.GetFreshNote();
-            freshNote.InitializeNote(evt, this, gm);
+            if (payload.Length <= 1)
+            {
+                freshNote.InitializeNote(evt, this, gm);
+                trackedNotes.Enqueue(freshNote);
+            }
+            /*
+            else
+            {
+                if (payload.Contains("h"))
+                {
 
-            HoldNotes freshHoldNote = gm.GetFreshHoldNote();
-            freshHoldNote.InitializeNote(evt, this, gm);
+                }
 
-            trackedNotes.Enqueue(freshNote);
-            trackedHoldNotes.Enqueue(freshHoldNote);
+                else
+                {
 
+                }
+            }
+            //HoldNotes freshHoldNote = gm.GetFreshHoldNote();
+            //freshHoldNote.InitializeNote(evt, this, gm);
+
+            
+            //trackedHoldNotes.Enqueue(freshHoldNote);
+            */
             pendingEventIndex++;
         }
     }

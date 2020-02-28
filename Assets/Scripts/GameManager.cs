@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿/*
+Name: Nick Lai
+Student ID#: 2282417
+Chapman email: lai137@mail.chapman.edu
+Course Number and Section: 440-01
+Project: soundwave.-
+Contains logic for note spawning and destruction
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
@@ -14,7 +23,7 @@ public class GameManager : MonoBehaviour
     [Range(8f, 150f)]
     public float hitWindowRangeInMS = 80f;
 
-    [Tooltip("The number of units traversed per seocond by Notes.")]
+    [Tooltip("The number of units traversed per second by Notes.")]
     public float noteSpeed = 1f;
 
     [Tooltip("The archetype to use for generating notes. Can be a prefab.")]

@@ -7,7 +7,6 @@ Project: soundwave.-
 Contains logic for the pause menu
 */
 
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
