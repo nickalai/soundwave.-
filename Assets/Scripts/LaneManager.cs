@@ -55,6 +55,8 @@ public class LaneManager : MonoBehaviour
     public Material Note;
     public Material hitNote;
 
+    Notes currentSpan = null;
+
     #endregion
     #region Return Statements
     // Position at which new Notes should spawn
@@ -136,7 +138,13 @@ public class LaneManager : MonoBehaviour
     void Update()
     {
         // Clears out invalid hit notes.
-        while (trackedNotes.Count > 0 && trackedNotes.Peek().IsNoteMissed())
+        while (trackedNotes.Count > 0 && trackedNotes.Peek().IsOneOff() && trackedNotes.Peek().IsNoteMissed())
+        {
+            gm.comboCounter = 0;
+            trackedNotes.Dequeue();
+        }
+
+        while (trackedNotes.Count > 0 && !trackedNotes.Peek().IsOneOff() && trackedNotes.Peek().IsSpanNoteMissed())
         {
             gm.comboCounter = 0;
             trackedNotes.Dequeue();
@@ -144,6 +152,18 @@ public class LaneManager : MonoBehaviour
 
         // Checks for new spawns.
         CheckSpawnNext();
+
+        // Checks if a span note is being hit
+        if (currentSpan != null)
+        {
+            if(currentSpan.IsSpanNoteMissed())
+            {
+                currentSpan.CancelInvoke("SpanNoteScore");
+                currentSpan.OnHit();
+                currentSpan = null;
+            }
+        }
+
         // Checks for input
         if (Input.GetKeyDown(keyboardButton))
         {
@@ -152,10 +172,24 @@ public class LaneManager : MonoBehaviour
             OnHitMaterial();
         }
 
+        else if (Input.GetKey(keyboardButton))
+        {
+            SetScaleHold();
+        }
+
         else if (Input.GetKeyUp(keyboardButton))
         {
             SetScaleDefault();
             ResetMaterial();
+            if (currentSpan != null)
+            {
+                if (currentSpan.IsNoteEndHittable())
+                {
+                    Debug.Log("Good timing bonus");
+                }
+                currentSpan.CancelInvoke("SpanNoteScore");
+                currentSpan = null;
+            }
         }
     }
 
@@ -179,12 +213,38 @@ public class LaneManager : MonoBehaviour
     // Checks if a Note is hit. If hit, will perform the Hit and remove the object from trackedNotes.
     public void CheckNoteHit()
     {
+        // Ensure that there are notes to check
+        if (trackedNotes.Count > 0)
+        {
+            Notes hitNote = trackedNotes.Peek();
+            if (hitNote == null)
+                return;
+            else if (hitNote.IsOneOff())
+            {
+                if (hitNote.IsNoteHittable())
+                {
+                    Notes curNote = trackedNotes.Dequeue();
+                    curNote.OnHit();
+                }
+            }
+            else
+            {
+                if(hitNote.IsSpanNoteHittable())
+                {
+                    currentSpan = trackedNotes.Dequeue();
+                    currentSpan.InvokeRepeating("SpanNoteScore", 0, 0.01f);
+                    Debug.Log("Span hit");
+                }
+            }
+        }
+        /*
         // Always check only the first event as we clear out missed entries before.
         if (trackedNotes.Count > 0 && trackedNotes.Peek().IsNoteHittable())
         {
             Notes hitNote = trackedNotes.Dequeue();
             hitNote.OnHit();
         }
+        */
     }
 
     // Checks if the next Note should be spawned. If true, spawns the Note and adds it to trackedNotes.
@@ -199,25 +259,10 @@ public class LaneManager : MonoBehaviour
             string payload = evt.GetTextValue();
 
             Notes freshNote = gm.GetFreshNote();
-            if (payload.Length <= 1)
-            {
-                freshNote.InitializeNote(evt, this, gm);
-                trackedNotes.Enqueue(freshNote);
-            }
-            /*
-            else
-            {
-                if (payload.Contains("h"))
-                {
-
-                }
-
-                else
-                {
-
-                }
-            }
-            */
+            freshNote.InitializeNote(evt, this, gm);
+            
+            trackedNotes.Enqueue(freshNote);
+        
             pendingEventIndex++;
         }
     }
