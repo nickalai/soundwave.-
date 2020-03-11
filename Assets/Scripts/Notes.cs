@@ -169,7 +169,8 @@ public class Notes : MonoBehaviour
         }
         gm.comboCounter++;
 
-        Instantiate(HitEffect_1, new Vector3(transform.position.x, 1, -11), Quaternion.identity);
+        Vector3 pos = lm.TargetPosition;
+        Instantiate(HitEffect_1, pos, Quaternion.identity);
 
         ReturnToPool();
     }

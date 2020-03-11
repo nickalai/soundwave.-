@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Cheryl/VFX/SampleFX.unity
     guid: b7df3ea25fa8ea24c8a70df3194aa2fb
+  - enabled: 0
+    path: Assets/Scenes/Nick/Circle Sample.unity
+    guid: 2fb21cc1cc543bc4ba0dc0ad23b0c0c9
+  - enabled: 1
+    path: Assets/Scenes/Cheryl/Circle Sample 2.unity
+    guid: 3b20dff896e3a7442921153cf6708292
   m_configObjects: {}
