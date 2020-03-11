@@ -22,6 +22,8 @@ public class Notes : MonoBehaviour
     GameManager gm;
     public GameObject HitEffect_1;
 
+    public float scoreAmt;
+
     #endregion
     #region Return Statements
     // Unclamped Lerp, same as Vector3.lerp without [0.0~1.0] clamping
@@ -53,6 +55,7 @@ public class Notes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateNoteLength();
         UpdateNotePosition();
 
         if (transform.position.z <= lm.DespawnZ)
@@ -60,6 +63,16 @@ public class Notes : MonoBehaviour
             gm.ReturnNoteToPool(this);
             Reset();
         }
+    }
+
+    public bool IsOneOff()
+    {
+        return trackedEvent.IsOneOff();
+    }
+
+    void UpdateNoteLength()
+    {
+
     }
 
     // Updates the note's position along the lane based on the current audio position
@@ -83,6 +96,28 @@ public class Notes : MonoBehaviour
         return (Mathf.Abs(noteTime - curTime) <= hitWindow);
     }
 
+    public bool IsSpanNoteHittable()
+    {
+        int noteTime = trackedEvent.StartSample;
+        int curTime = gm.DelayedSampleTime;
+        int hitWindow = gm.HitWindowSampleWidth;
+
+        return (noteTime - curTime) <= hitWindow;
+    }
+
+    public bool IsNoteEndHittable()
+    {
+        bool isHittable = false;
+        if (!trackedEvent.IsOneOff())
+        {
+            int noteTime = trackedEvent.EndSample;
+            int curTime = gm.DelayedSampleTime;
+            int hitWindow = gm.HitWindowSampleWidth;
+            isHittable = (Mathf.Abs(noteTime - curTime) <= hitWindow);
+        }
+        return isHittable;
+    }
+
     // Checks if a note is no longer able to be hit based on the given hit window
     public bool IsNoteMissed()
     {
@@ -97,6 +132,20 @@ public class Notes : MonoBehaviour
             isMissed = (curTime - noteTime > hitWindow);
         }
 
+        return isMissed;
+    }
+
+    public bool IsSpanNoteMissed()
+    {
+        bool isMissed = true;
+        if (enabled)
+        {
+            int noteTime = trackedEvent.EndSample;
+            int curTime = gm.DelayedSampleTime;
+            int hitWindow = gm.HitWindowSampleWidth;
+
+            isMissed = (curTime - noteTime > hitWindow);
+        }
         return isMissed;
     }
 
@@ -121,7 +170,6 @@ public class Notes : MonoBehaviour
         gm.comboCounter++;
 
         Instantiate(HitEffect_1, new Vector3(transform.position.x, 1, -11), Quaternion.identity);
-        //Destroy(HitEffect_1, 1.0f);
 
         ReturnToPool();
     }
@@ -130,6 +178,12 @@ public class Notes : MonoBehaviour
     public void OnClear()
     {
         ReturnToPool();
+    }
+
+    // Span note scoring
+    public void SpanNoteScore()
+    {
+        scoreAmt += 100 * Time.deltaTime;
     }
 
     #endregion
