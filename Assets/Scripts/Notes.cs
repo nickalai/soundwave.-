@@ -65,23 +65,35 @@ public class Notes : MonoBehaviour
         }
     }
 
-    public bool IsOneOff()
+    public bool IsOneOffNote()
     {
         return trackedEvent.IsOneOff();
     }
 
     void UpdateNoteLength()
     {
+        if (!trackedEvent.IsOneOff())
+        {
+            float baseUnitHeight = visuals.GetComponent<Renderer>().bounds.size.z;
 
+            float fullHeight = gm.GetVerticalUnitOffsetForSampleTime(trackedEvent.StartSample) - gm.GetVerticalUnitOffsetForSampleTime(trackedEvent.EndSample);
+            float hitWindowHeight = gm.WindowSizeInUnits * 2f;
+            float targetUnitHeight = fullHeight + hitWindowHeight;
+
+            Vector3 scale = transform.localScale;
+            scale.z = targetUnitHeight / baseUnitHeight;
+            transform.localScale = scale;
+        }   
     }
 
     // Updates the note's position along the lane based on the current audio position
     void UpdateNotePosition()
     {
-        float samplesPerUnit = gm.SampleRate / gm.noteSpeed;
+        //float samplesPerUnit = gm.SampleRate / gm.noteSpeed;
+        float samplesPerUnit = 0.5f * (gm.GetVerticalUnitOffsetForSampleTime(trackedEvent.StartSample) - gm.GetVerticalUnitOffsetForSampleTime(trackedEvent.EndSample));
 
         Vector3 pos = lm.TargetPosition;
-        pos.z -= (gm.DelayedSampleTime - trackedEvent.StartSample) / samplesPerUnit;
+        pos.z -= gm.GetVerticalUnitOffsetForSampleTime(trackedEvent.StartSample) - samplesPerUnit;
         transform.position = pos;
         transform.rotation = lm.TargetRotation;
     }
@@ -113,6 +125,7 @@ public class Notes : MonoBehaviour
             int noteTime = trackedEvent.EndSample;
             int curTime = gm.DelayedSampleTime;
             int hitWindow = gm.HitWindowSampleWidth;
+
             isHittable = (Mathf.Abs(noteTime - curTime) <= hitWindow);
         }
         return isHittable;
@@ -123,7 +136,7 @@ public class Notes : MonoBehaviour
     {
         bool isMissed = true;
 
-        if(enabled)
+        if (enabled)
         {
             int noteTime = trackedEvent.StartSample;
             int curTime = gm.DelayedSampleTime;
@@ -170,7 +183,7 @@ public class Notes : MonoBehaviour
         gm.comboCounter++;
 
         Vector3 pos = lm.TargetPosition;
-        Instantiate(HitEffect_1, pos, Quaternion.identity);
+        GameObject effect = Instantiate(HitEffect_1, pos, Quaternion.identity);
 
         ReturnToPool();
     }

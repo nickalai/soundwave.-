@@ -138,19 +138,27 @@ public class LaneManager : MonoBehaviour
     void Update()
     {
         // Clears out invalid hit notes.
-        while (trackedNotes.Count > 0 && trackedNotes.Peek().IsOneOff() && trackedNotes.Peek().IsNoteMissed())
+        while (trackedNotes.Count > 0)
         {
-            gm.comboCounter = 0;
-            trackedNotes.Dequeue();
+            Notes curNote = trackedNotes.Peek();
+            if (curNote.IsOneOffNote() && curNote.IsNoteMissed())
+            {
+                gm.comboCounter = 0;
+                trackedNotes.Dequeue();
+            }
+
+            else if (!curNote.IsOneOffNote() && curNote.IsSpanNoteMissed())
+            {
+                gm.comboCounter = 0;
+                trackedNotes.Dequeue();
+            }
+
+            else
+            {
+                break;
+            }
         }
 
-        while (trackedNotes.Count > 0 && !trackedNotes.Peek().IsOneOff() && trackedNotes.Peek().IsSpanNoteMissed())
-        {
-            gm.comboCounter = 0;
-            trackedNotes.Dequeue();
-        }
-
-        // Checks for new spawns.
         CheckSpawnNext();
 
         // Checks if a span note is being hit
@@ -219,7 +227,7 @@ public class LaneManager : MonoBehaviour
             Notes hitNote = trackedNotes.Peek();
             if (hitNote == null)
                 return;
-            else if (hitNote.IsOneOff())
+            else if (hitNote.IsOneOffNote())
             {
                 if (hitNote.IsNoteHittable())
                 {
@@ -237,14 +245,6 @@ public class LaneManager : MonoBehaviour
                 }
             }
         }
-        /*
-        // Always check only the first event as we clear out missed entries before.
-        if (trackedNotes.Count > 0 && trackedNotes.Peek().IsNoteHittable())
-        {
-            Notes hitNote = trackedNotes.Dequeue();
-            hitNote.OnHit();
-        }
-        */
     }
 
     // Checks if the next Note should be spawned. If true, spawns the Note and adds it to trackedNotes.

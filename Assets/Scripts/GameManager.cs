@@ -96,6 +96,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Gets the number of samples traversed given the current speed in units/sec
+    public float GetVerticalUnitOffsetForSampleTime(int sampleTime)
+    {
+        float samplesPerUnit = SampleRate / noteSpeed;
+
+        return (DelayedSampleTime - sampleTime) / samplesPerUnit;
+    }
+
     #endregion
     #region Methods
     // Start is called before the first frame update
