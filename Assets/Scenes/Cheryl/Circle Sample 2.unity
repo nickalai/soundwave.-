@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   eventID: NeverGonnaGiveYouUp_EasyTrack
   hitWindowRangeInMS: 80
   noteSpeed: 15
-  notePrefab: {fileID: 5453608237423346142, guid: f56fad0071107804cbed584ea1f10b4b,
+  notePrefab: {fileID: -5859551050377448243, guid: f56fad0071107804cbed584ea1f10b4b,
     type: 3}
   noteLanes:
   - {fileID: 6059151587710608337}
