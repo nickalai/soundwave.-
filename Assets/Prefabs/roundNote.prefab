@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1044292326133865639}
   - component: {fileID: 8279243641249871266}
   - component: {fileID: 5671031174142037967}
-  - component: {fileID: 5453608237423346142}
+  - component: {fileID: -5859551050377448243}
   m_Layer: 0
   m_Name: roundNote
   m_TagString: Untagged
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5453608237423346142
+--- !u!114 &-5859551050377448243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,3 +94,4 @@ MonoBehaviour:
   visuals: {fileID: 2737274748558585294}
   HitEffect_1: {fileID: 5227569752316113758, guid: 4baf66c675f325c45bf115197ecd86c5,
     type: 3}
+  scoreAmt: 0
