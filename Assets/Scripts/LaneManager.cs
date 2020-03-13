@@ -141,7 +141,12 @@ public class LaneManager : MonoBehaviour
         while (trackedNotes.Count > 0)
         {
             Notes curNote = trackedNotes.Peek();
-            if (curNote.IsOneOffNote() && curNote.IsNoteMissed())
+            if (!curNote.IsNoteValid())
+            {
+                trackedNotes.Dequeue();
+            }
+
+            else if (curNote.IsOneOffNote() && curNote.IsNoteMissed())
             {
                 gm.comboCounter = 0;
                 trackedNotes.Dequeue();
