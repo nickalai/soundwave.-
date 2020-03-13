@@ -161,6 +161,11 @@ public class Notes : MonoBehaviour
         }
         return isMissed;
     }
+    
+    public bool IsNoteValid()
+    {
+        return trackedEvent != null;
+    }
 
     // Returns note to the pool which is controlled by the GameManager. Used to reduce runtime allocations
     void ReturnToPool()
