@@ -24,6 +24,8 @@ public class Notes : MonoBehaviour
 
     public float scoreAmt;
 
+    private float defaultNoteZ;
+
     #endregion
     #region Return Statements
     // Unclamped Lerp, same as Vector3.lerp without [0.0~1.0] clamping
@@ -40,6 +42,7 @@ public class Notes : MonoBehaviour
         trackedEvent = evt;
         lm = laneManager;
         gm = gameManager;
+        defaultNoteZ = transform.localScale.z;
 
         UpdateNotePosition();
     }
@@ -50,6 +53,7 @@ public class Notes : MonoBehaviour
         trackedEvent = null;
         lm = null;
         gm = null;
+        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, defaultNoteZ);
     }
 
     // Update is called once per frame
@@ -207,6 +211,3 @@ public class Notes : MonoBehaviour
 
     #endregion
 }
-
-
-//https://www.tapatalk.com/groups/koreographer/rhythm-game-note-length-t57-s20.html resource for getting hold notes in im a failure
