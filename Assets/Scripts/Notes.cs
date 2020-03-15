@@ -45,6 +45,7 @@ public class Notes : MonoBehaviour
         defaultNoteZ = transform.localScale.z;
 
         UpdateNotePosition();
+        UpdateNoteLength();
     }
 
     // Resets note to default state
@@ -59,7 +60,6 @@ public class Notes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateNoteLength();
         UpdateNotePosition();
 
         if (transform.position.z <= lm.DespawnZ)
