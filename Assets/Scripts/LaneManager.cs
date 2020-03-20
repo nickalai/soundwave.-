@@ -326,7 +326,6 @@ public class LaneManager : MonoBehaviour
     {
         AdjustScale(scaleHold);
     }
-    #endregion
 
     // Sets target material to hit material
     public void OnHitMaterial() 
@@ -338,4 +337,6 @@ public class LaneManager : MonoBehaviour
     {
         this.gameObject.GetComponent<MeshRenderer>().material = Note;
     }
+
+    #endregion
 }
