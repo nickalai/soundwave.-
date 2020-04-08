@@ -531,6 +531,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b64c12340f1688642b273b9cd9f41714, type: 3}
+--- !u!114 &314587918 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1381536615878140119, guid: b64c12340f1688642b273b9cd9f41714,
+    type: 3}
+  m_PrefabInstance: {fileID: 314587917}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1060073270, guid: 7ab44e72661444ea4b3b72f155c6ecea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &580882065 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 1381536615878140118, guid: b64c12340f1688642b273b9cd9f41714,
@@ -1104,6 +1116,8 @@ MonoBehaviour:
   currentScore: 0
   scorePerNote: 100
   comboCounter: 0
+  smp: {fileID: 314587918}
+  chartToPlay: {fileID: 0}
 --- !u!4 &973986322
 Transform:
   m_ObjectHideFlags: 0
