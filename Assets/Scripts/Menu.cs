@@ -11,12 +11,19 @@ Contains logic for menu objects
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
     public string levelToLoad;
 
+    LoadChart lc;
+
+    void Start()
+    {
+        lc = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>();
+    }
     // Quits the game
     public void Quit()
     {
@@ -27,5 +34,11 @@ public class Menu : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene(levelToLoad);
+    }
+
+    public void LoadChartToPlay(Chart chart)
+    {
+        lc.chartToLoad = chart.koreo;
+        SceneManager.LoadScene("Circle Sample");
     }
 }

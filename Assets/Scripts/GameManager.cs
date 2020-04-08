@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
     // Pool for containing Notes to reduce unnecessary Instatiation/Destruction.
     Stack<Notes> notePool = new Stack<Notes>();
 
+    public GameObject musicPlayback;
+    LoadChart lc;
+
     #endregion
     #region Return Statements
     // Public access to the hit window
@@ -109,6 +112,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        musicPlayback.GetComponent<SimpleMusicPlayer>() = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>().chartToLoad;
         InitializeLeadIn();
 
         // Init all Lanes.

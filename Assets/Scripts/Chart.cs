@@ -12,45 +12,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
 
-public class Chart : MonoBehaviour
+[CreateAssetMenu(fileName = "New Chart", menuName = "Charts")]
+public class Chart : ScriptableObject
 {
-    public int ID { get; set; }
-    public string songName { get; set; }
-    public Koreography koreo { get; set; }
-    public bool completed { get; set; }
-    public int difficulty { get; set; }
-    public int highScore { get; set; }
-    public bool locked { get; set; }
+    public int ID;
+    public string songName;
+    public Koreography koreo;
 
-    public Chart(int id, string song, Koreography track, bool comp, int diff, int score, bool lockedStatus)
-    {
-        this.ID = id;
-        this.songName = song;
-        this.koreo = track;
-        this.completed = comp;
-        this.difficulty = diff;
-        this.highScore = score;
-        this.locked = lockedStatus;
-    }
-
-    public void Complete()
-    {
-        this.completed = true;
-    }
-
-    public void Complete(int score)
-    {
-        this.completed = true;
-        this.highScore = score;
-    }
-
-    public void Lock()
-    {
-        this.locked = true;
-    }
-
-    public void Unlock()
-    {
-        this.locked = false;
-    }
+    public string difficulty;
+    public int difficultyNum;
+    public int highScore;
+    public bool completed;
 }
