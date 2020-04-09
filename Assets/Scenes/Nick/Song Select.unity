@@ -1066,7 +1066,6 @@ GameObject:
   - component: {fileID: 520629121}
   - component: {fileID: 520629120}
   - component: {fileID: 520629124}
-  - component: {fileID: 520629125}
   m_Layer: 5
   m_Name: Song_5
   m_TagString: Untagged
@@ -1230,22 +1229,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &520629125
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520629118}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &540383197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2476,7 +2459,6 @@ GameObject:
   - component: {fileID: 956609649}
   - component: {fileID: 956609648}
   - component: {fileID: 956609652}
-  - component: {fileID: 956609653}
   m_Layer: 5
   m_Name: Song_2
   m_TagString: Untagged
@@ -2640,22 +2622,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &956609653
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956609646}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &970346614
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,8 +3360,6 @@ GameObject:
   - component: {fileID: 1472891798}
   - component: {fileID: 1472891801}
   - component: {fileID: 1472891802}
-  - component: {fileID: 1472891804}
-  - component: {fileID: 1472891803}
   m_Layer: 5
   m_Name: Song_1
   m_TagString: Untagged
@@ -3559,36 +3523,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1472891803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1472891796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab8e8ad2b54c924480b668c65b09928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  tabSelect: {fileID: 1978084631}
---- !u!111 &1472891804
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1472891796}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1489556577
 GameObject:
   m_ObjectHideFlags: 0
@@ -4314,7 +4248,6 @@ GameObject:
   - component: {fileID: 1710116695}
   - component: {fileID: 1710116694}
   - component: {fileID: 1710116698}
-  - component: {fileID: 1710116699}
   m_Layer: 5
   m_Name: Song_4
   m_TagString: Untagged
@@ -4478,22 +4411,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &1710116699
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710116692}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1736239940
 GameObject:
   m_ObjectHideFlags: 0
@@ -4824,7 +4741,6 @@ GameObject:
   - component: {fileID: 1883938670}
   - component: {fileID: 1883938669}
   - component: {fileID: 1883938673}
-  - component: {fileID: 1883938674}
   m_Layer: 5
   m_Name: Song_3
   m_TagString: Untagged
@@ -4988,22 +4904,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &1883938674
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1883938667}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1884476189
 GameObject:
   m_ObjectHideFlags: 0
@@ -5850,7 +5750,6 @@ GameObject:
   - component: {fileID: 2052158578}
   - component: {fileID: 2052158577}
   - component: {fileID: 2052158581}
-  - component: {fileID: 2052158582}
   m_Layer: 5
   m_Name: Song_6
   m_TagString: Untagged
@@ -6014,22 +5913,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &2052158582
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052158575}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: a284b87ff29c3204fa89549f26563428, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &2054485144
 GameObject:
   m_ObjectHideFlags: 0
