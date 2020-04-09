@@ -9,9 +9,7 @@ public class TabSelect : MonoBehaviour
 {
     public int currentTab;
     public TabGroup tabGroup;
-    //public Animation anim;
 
-    //private int angle = 0;
     List<Quaternion> rotList = new List<Quaternion>();
     private float targetAngle = 0;
     private float angleAmount;
@@ -43,9 +41,7 @@ public class TabSelect : MonoBehaviour
         }
         */
 
-        if (Loading == false) {
-            GetInput();
-        }
+        GetInput();
         
     }
 
