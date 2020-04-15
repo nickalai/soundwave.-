@@ -56,6 +56,7 @@ public class LaneManager : MonoBehaviour
     public Material hitNote;
 
     Notes currentSpan = null;
+    public bool controllerIsInLane;
 
     #endregion
     #region Return Statements
@@ -141,41 +142,32 @@ public class LaneManager : MonoBehaviour
         while (trackedNotes.Count > 0)
         {
             Notes curNote = trackedNotes.Peek();
-            if (!curNote.IsNoteValid())
-            {
-                trackedNotes.Dequeue();
-            }
 
-            else if (curNote.IsOneOffNote() && curNote.IsNoteMissed())
+            if (IsOneOffNote() && IsNoteMissed())
             {
                 gm.comboCounter = 0;
                 trackedNotes.Dequeue();
             }
 
-            else if (!curNote.IsOneOffNote() && curNote.IsSpanNoteMissed())
+            else if (!IsOneOffNote() && IsSpanNoteMissed())
             {
                 gm.comboCounter = 0;
                 trackedNotes.Dequeue();
             }
-
+            
             else
             {
                 break;
             }
+
+            if (trackedNotes.Peek().transform.position.z <= DespawnZ)
+            {
+                gm.ReturnNoteToPool(trackedNotes.Peek());
+                trackedNotes.Peek().Reset();
+            }
         }
 
         CheckSpawnNext();
-
-        // Checks if a span note is being hit
-        if (currentSpan != null)
-        {
-            if(currentSpan.IsSpanNoteMissed())
-            {
-                currentSpan.CancelInvoke("SpanNoteScore");
-                currentSpan.OnHit();
-                currentSpan = null;
-            }
-        }
 
         // Checks for input
         if (Input.GetKeyDown(keyboardButton))
@@ -188,21 +180,13 @@ public class LaneManager : MonoBehaviour
         else if (Input.GetKey(keyboardButton))
         {
             SetScaleHold();
+            CheckSpanNoteHit();
         }
 
         else if (Input.GetKeyUp(keyboardButton))
         {
             SetScaleDefault();
             ResetMaterial();
-            if (currentSpan != null)
-            {
-                if (currentSpan.IsNoteEndHittable())
-                {
-                    Debug.Log("Good timing bonus");
-                }
-                currentSpan.CancelInvoke("SpanNoteScore");
-                currentSpan = null;
-            }
         }
     }
 
@@ -227,26 +211,56 @@ public class LaneManager : MonoBehaviour
     public void CheckNoteHit()
     {
         // Ensure that there are notes to check
-        if (trackedNotes.Count > 0)
+        if (trackedNotes.Count > 0 && controllerIsInLane)
         {
             Notes hitNote = trackedNotes.Peek();
-            if (hitNote == null)
-                return;
-            else if (hitNote.IsOneOffNote())
+
+            if (IsOneOffNote())
             {
-                if (hitNote.IsNoteHittable())
+                if (IsNoteHittable())
                 {
                     Notes curNote = trackedNotes.Dequeue();
                     curNote.OnHit();
                 }
             }
+            
             else
             {
-                if(hitNote.IsSpanNoteHittable())
+                if(IsSpanNoteHittable())
                 {
                     currentSpan = trackedNotes.Dequeue();
-                    currentSpan.InvokeRepeating("SpanNoteScore", 0, 0.01f);
+                    currentSpan.InvokeRepeating("SpanNoteScore", 0, 0.1f);
                     Debug.Log("Span hit");
+                }
+            }
+            
+        }
+    }
+
+    public void CheckSpanNoteHit()
+    {
+        if (trackedNotes.Count > 0)
+        {
+            Notes spanNote = trackedNotes.Peek();
+            if (spanNote == null)
+                return;
+            else if (!IsOneOffNote())
+            {
+                if (IsSpanNoteHittable())
+                {
+                    currentSpan = trackedNotes.Dequeue();
+                    gm.comboCounter++;
+                    currentSpan.InvokeRepeating("SpanNoteScore", 0, 0.1f);
+                    Debug.Log("Span hit");
+                    if (currentSpan != null)
+                    {
+                        if (IsNoteEndHittable())
+                        {
+                            Debug.Log("Good timing bonus");
+                        }
+                        currentSpan.CancelInvoke("SpanNoteScore");
+                        currentSpan = null;
+                    }
                 }
             }
         }
@@ -336,6 +350,94 @@ public class LaneManager : MonoBehaviour
     public void ResetMaterial() 
     {
         this.gameObject.GetComponent<MeshRenderer>().material = Note;
+    }
+
+    // Checks whether a note is a One Off or a Span Event
+    public bool IsOneOffNote()
+    {
+        return trackedNotes.Peek().trackedEvent.IsOneOff();
+    }
+
+    // Calculates whether or not a one off note is within the hit window
+    public bool IsNoteHittable()
+    {
+        int noteTime = trackedNotes.Peek().trackedEvent.StartSample;
+        int curTime = gm.DelayedSampleTime;
+        int hitWindow = gm.HitWindowSampleWidth;
+
+        return (Mathf.Abs(noteTime - curTime) <= hitWindow);
+    }
+
+    // Calculates whether or not a span note is within the hit window
+    public bool IsSpanNoteHittable()
+    {
+        int noteTime = trackedNotes.Peek().trackedEvent.StartSample;
+        int curTime = gm.DelayedSampleTime;
+        int hitWindow = gm.HitWindowSampleWidth;
+
+        return (noteTime - curTime) <= hitWindow;
+    }
+
+    // Calculates whether or not a span note's end sample is within the hit window
+    public bool IsNoteEndHittable()
+    {
+        bool isHittable = false;
+        if (!trackedNotes.Peek().trackedEvent.IsOneOff())
+        {
+            int noteTime = trackedNotes.Peek().trackedEvent.EndSample;
+            int curTime = gm.DelayedSampleTime;
+            int hitWindow = gm.HitWindowSampleWidth;
+
+            isHittable = (Mathf.Abs(noteTime - curTime) <= hitWindow);
+        }
+
+        return isHittable;
+    }
+
+    // Checks if a one off note is no longer able to be hit based on the given hit window
+    public bool IsNoteMissed()
+    {
+        bool isMissed = true;
+
+        if (enabled)
+        {
+            int noteTime = trackedNotes.Peek().trackedEvent.StartSample;
+            int curTime = gm.DelayedSampleTime;
+            int hitWindow = gm.HitWindowSampleWidth;
+
+            isMissed = (curTime - noteTime > hitWindow);
+        }
+
+        return isMissed;
+    }
+
+    // Checks if a span note is no longer able to be hit based on the given hit window
+    public bool IsSpanNoteMissed()
+    {
+        bool isMissed = true;
+        if (enabled)
+        {
+            int noteTime = trackedNotes.Peek().trackedEvent.EndSample;
+            int curTime = gm.DelayedSampleTime;
+            int hitWindow = gm.HitWindowSampleWidth;
+
+            isMissed = (curTime - noteTime > hitWindow);
+        }
+
+        return isMissed;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other);
+        if (other.tag == "Zone")
+            controllerIsInLane = true;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Zone")
+            controllerIsInLane = false;
     }
 
     #endregion

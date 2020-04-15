@@ -113,8 +113,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        chartToPlay = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>().chartToLoad;
-        smp.LoadSong(chartToPlay, 0, false);
+        //chartToPlay = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>().chartToLoad;
+        //smp.LoadSong(chartToPlay, 0, false);
         InitializeLeadIn();
 
         // Init all Lanes.
@@ -253,7 +253,7 @@ public class GameManager : MonoBehaviour
         {
             noteLanes[i].Restart();
         }
-        //Reinit the lead-in timing.
+        // Reinit the lead-in timing.
         InitializeLeadIn();
     }
 

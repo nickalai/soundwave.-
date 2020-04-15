@@ -17,7 +17,7 @@ public class Notes : MonoBehaviour
     #region Variables
     [Tooltip("Visuals for notes")]
     public GameObject visuals;
-    KoreographyEvent trackedEvent;
+    public KoreographyEvent trackedEvent;
     LaneManager lm;
     GameManager gm;
     public GameObject HitEffect_1;
@@ -49,7 +49,7 @@ public class Notes : MonoBehaviour
     }
 
     // Resets note to default state
-    void Reset()
+    public void Reset()
     {
         trackedEvent = null;
         lm = null;
@@ -61,19 +61,8 @@ public class Notes : MonoBehaviour
     void Update()
     {
         UpdateNotePosition();
-
-        if (transform.position.z <= lm.DespawnZ)
-        {
-            gm.ReturnNoteToPool(this);
-            Reset();
-        }
     }
-
-    public bool IsOneOffNote()
-    {
-        return trackedEvent.IsOneOff();
-    }
-
+    
     void UpdateNoteLength()
     {
         if (!trackedEvent.IsOneOff())
@@ -102,75 +91,6 @@ public class Notes : MonoBehaviour
         transform.rotation = lm.TargetRotation;
     }
 
-    // Checks whether or not you can hit a note based on the current audio sample
-    public bool IsNoteHittable()
-    {
-        int noteTime = trackedEvent.StartSample;
-        int curTime = gm.DelayedSampleTime;
-        int hitWindow = gm.HitWindowSampleWidth;
-
-        return (Mathf.Abs(noteTime - curTime) <= hitWindow);
-    }
-
-    public bool IsSpanNoteHittable()
-    {
-        int noteTime = trackedEvent.StartSample;
-        int curTime = gm.DelayedSampleTime;
-        int hitWindow = gm.HitWindowSampleWidth;
-
-        return (noteTime - curTime) <= hitWindow;
-    }
-
-    public bool IsNoteEndHittable()
-    {
-        bool isHittable = false;
-        if (!trackedEvent.IsOneOff())
-        {
-            int noteTime = trackedEvent.EndSample;
-            int curTime = gm.DelayedSampleTime;
-            int hitWindow = gm.HitWindowSampleWidth;
-
-            isHittable = (Mathf.Abs(noteTime - curTime) <= hitWindow);
-        }
-        return isHittable;
-    }
-
-    // Checks if a note is no longer able to be hit based on the given hit window
-    public bool IsNoteMissed()
-    {
-        bool isMissed = true;
-
-        if (enabled)
-        {
-            int noteTime = trackedEvent.StartSample;
-            int curTime = gm.DelayedSampleTime;
-            int hitWindow = gm.HitWindowSampleWidth;
-
-            isMissed = (curTime - noteTime > hitWindow);
-        }
-
-        return isMissed;
-    }
-
-    public bool IsSpanNoteMissed()
-    {
-        bool isMissed = true;
-        if (enabled)
-        {
-            int noteTime = trackedEvent.EndSample;
-            int curTime = gm.DelayedSampleTime;
-            int hitWindow = gm.HitWindowSampleWidth;
-
-            isMissed = (curTime - noteTime > hitWindow);
-        }
-        return isMissed;
-    }
-    
-    public bool IsNoteValid()
-    {
-        return trackedEvent != null;
-    }
-
     // Returns note to the pool which is controlled by the GameManager. Used to reduce runtime allocations
     void ReturnToPool()
     {
@@ -181,15 +101,8 @@ public class Notes : MonoBehaviour
     // Performs action when a note is hit
     public void OnHit()
     {
-        if (gm.comboCounter == 0)
-        {
-            gm.currentScore += gm.scorePerNote;
-        }
-        else if (gm.comboCounter > 0)
-        {
-            gm.currentScore += gm.scorePerNote * gm.comboCounter;
-        }
         gm.comboCounter++;
+        gm.currentScore += gm.scorePerNote * gm.comboCounter;
 
         Vector3 pos = lm.TargetPosition;
         GameObject effect = Instantiate(HitEffect_1, pos, Quaternion.identity);
@@ -208,6 +121,6 @@ public class Notes : MonoBehaviour
     {
         scoreAmt += 100 * Time.deltaTime;
     }
-
+    
     #endregion
 }
