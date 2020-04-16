@@ -82,13 +82,16 @@ public class Notes : MonoBehaviour
     // Updates the note's position along the lane based on the current audio position
     void UpdateNotePosition()
     {
-        //float samplesPerUnit = gm.SampleRate / gm.noteSpeed;
-        float samplesPerUnit = 0.5f * (gm.GetVerticalUnitOffsetForSampleTime(trackedEvent.StartSample) - gm.GetVerticalUnitOffsetForSampleTime(trackedEvent.EndSample));
+        float samplesPerUnit = gm.SampleRate / gm.noteSpeed;
+        //float samplesPerUnit = 0.5f * (gm.GetVerticalUnitOffsetForSampleTime(trackedEvent.StartSample) - gm.GetVerticalUnitOffsetForSampleTime(trackedEvent.EndSample));
 
-        Vector3 pos = lm.TargetPosition;
-        pos.z -= gm.GetVerticalUnitOffsetForSampleTime(trackedEvent.StartSample) - samplesPerUnit;
-        transform.position = pos;
-        transform.rotation = lm.TargetRotation;
+        Vector3 dir = lm.TargetPosition - lm.SpawnPosition;
+
+        dir.Normalize();
+        float remainingDist = (gm.DelayedSampleTime - trackedEvent.StartSample) / samplesPerUnit;
+        Vector3 offset = dir * remainingDist;
+
+        transform.position = lm.TargetPosition + offset;
     }
 
     // Returns note to the pool which is controlled by the GameManager. Used to reduce runtime allocations

@@ -38,8 +38,8 @@ public class LaneManager : MonoBehaviour
     GameManager gm;
 
     // Lifetime boundaries.
-    float spawnZ = 0f;
-    public float despawnZ = 0f;
+    public Transform noteSpawnpoint;
+    public Transform noteDespawnpoint;
 
     // Index of the next event to check for spawn timing in this lane.
     int pendingEventIndex = 0;
@@ -57,6 +57,7 @@ public class LaneManager : MonoBehaviour
 
     Notes currentSpan = null;
     public bool controllerIsInLane;
+    
 
     #endregion
     #region Return Statements
@@ -65,7 +66,7 @@ public class LaneManager : MonoBehaviour
     {
         get
         {
-            return new Vector3(transform.position.x, transform.position.y, spawnZ);
+            return new Vector3(noteSpawnpoint.position.x, noteSpawnpoint.position.y, noteSpawnpoint.position.z);
         }
     }
 
@@ -91,7 +92,7 @@ public class LaneManager : MonoBehaviour
     {
         get
         {
-            return despawnZ;
+            return noteDespawnpoint.position.z;
         }
     }
     #endregion
@@ -125,11 +126,6 @@ public class LaneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Gets the vertical bounds of the camera. Offset by a bit to allow for offscrean spawning/removal
-        float cameraOffsetZ = -Camera.main.transform.position.z;
-        spawnZ = 3f; // Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, cameraOffsetZ)).z + 3f; PROPER WAY, Currently hard coded.
-        despawnZ = -9f;//Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, cameraOffsetZ)).z - 1f; PROPER WAY, Currently hard coded.
-
         defaultScale = targetVisuals.transform.localScale;
         defaultRotation = targetVisuals.transform.rotation;
         ResetMaterial();
@@ -200,7 +196,7 @@ public class LaneManager : MonoBehaviour
     int GetSpawnSampleOffset()
     {
         // Determines the sample offset at the current speed.
-        float spawnDistToTarget = spawnZ - transform.position.z;
+        float spawnDistToTarget = noteSpawnpoint.position.z - transform.position.z;
         // Determines time to location at the current speed.
         double spawnSecsToTarget = (double)spawnDistToTarget / (double)gm.noteSpeed;
         // Returns samples to the target.
@@ -429,7 +425,6 @@ public class LaneManager : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
         if (other.tag == "Zone")
             controllerIsInLane = true;
     }
