@@ -134,37 +134,37 @@ public class LaneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Clears out invalid hit notes.
+        // Clears out invalid hit notes.     
         while (trackedNotes.Count > 0)
         {
             Notes curNote = trackedNotes.Peek();
 
-            if (IsOneOffNote() && IsNoteMissed())
+            if (IsOneOffNote(curNote) && IsNoteMissed(curNote))
             {
+                Debug.Log("Missed One off");
                 gm.comboCounter = 0;
                 trackedNotes.Dequeue();
             }
-
-            else if (!IsOneOffNote() && IsSpanNoteMissed())
+            else if (!IsOneOffNote(curNote) && IsSpanNoteMissed(curNote))
             {
                 gm.comboCounter = 0;
                 trackedNotes.Dequeue();
-            }
-            
+            }         
             else
             {
                 break;
             }
-
-            if (trackedNotes.Peek().transform.position.z <= DespawnZ)
-            {
-                gm.ReturnNoteToPool(trackedNotes.Peek());
-                trackedNotes.Peek().Reset();
-            }
+            
         }
-
+        
         CheckSpawnNext();
-
+        
+        if (trackedNotes.Count > 0 && trackedNotes.Peek().transform.position.z <= DespawnZ)
+        {
+            gm.ReturnNoteToPool(trackedNotes.Peek());
+            trackedNotes.Peek().Reset();
+        }
+        
         // Checks for input
         if (Input.GetKeyDown(keyboardButton))
         {
@@ -196,7 +196,7 @@ public class LaneManager : MonoBehaviour
     int GetSpawnSampleOffset()
     {
         // Determines the sample offset at the current speed.
-        float spawnDistToTarget = noteSpawnpoint.position.z - transform.position.z;
+        float spawnDistToTarget = SpawnPosition.z - transform.position.z;
         // Determines time to location at the current speed.
         double spawnSecsToTarget = (double)spawnDistToTarget / (double)gm.noteSpeed;
         // Returns samples to the target.
@@ -211,18 +211,18 @@ public class LaneManager : MonoBehaviour
         {
             Notes hitNote = trackedNotes.Peek();
 
-            if (IsOneOffNote())
+            if (IsOneOffNote(hitNote))
             {
-                if (IsNoteHittable())
+                if (IsNoteHittable(hitNote))
                 {
                     Notes curNote = trackedNotes.Dequeue();
                     curNote.OnHit();
                 }
             }
             
-            else
+            else if (!IsOneOffNote(hitNote))
             {
-                if(IsSpanNoteHittable())
+                if(IsSpanNoteHittable(hitNote))
                 {
                     currentSpan = trackedNotes.Dequeue();
                     currentSpan.InvokeRepeating("SpanNoteScore", 0, 0.1f);
@@ -235,14 +235,14 @@ public class LaneManager : MonoBehaviour
 
     public void CheckSpanNoteHit()
     {
-        if (trackedNotes.Count > 0)
+        if (trackedNotes.Count > 0 && controllerIsInLane)
         {
             Notes spanNote = trackedNotes.Peek();
             if (spanNote == null)
                 return;
-            else if (!IsOneOffNote())
+            else if (!IsOneOffNote(spanNote))
             {
-                if (IsSpanNoteHittable())
+                if (IsSpanNoteHittable(spanNote))
                 {
                     currentSpan = trackedNotes.Dequeue();
                     gm.comboCounter++;
@@ -250,7 +250,7 @@ public class LaneManager : MonoBehaviour
                     Debug.Log("Span hit");
                     if (currentSpan != null)
                     {
-                        if (IsNoteEndHittable())
+                        if (IsNoteEndHittable(spanNote))
                         {
                             Debug.Log("Good timing bonus");
                         }
@@ -349,15 +349,15 @@ public class LaneManager : MonoBehaviour
     }
 
     // Checks whether a note is a One Off or a Span Event
-    public bool IsOneOffNote()
+    public bool IsOneOffNote(Notes note)
     {
-        return trackedNotes.Peek().trackedEvent.IsOneOff();
+        return note.trackedEvent.IsOneOff();
     }
 
     // Calculates whether or not a one off note is within the hit window
-    public bool IsNoteHittable()
+    public bool IsNoteHittable(Notes note)
     {
-        int noteTime = trackedNotes.Peek().trackedEvent.StartSample;
+        int noteTime = note.trackedEvent.StartSample;
         int curTime = gm.DelayedSampleTime;
         int hitWindow = gm.HitWindowSampleWidth;
 
@@ -365,9 +365,9 @@ public class LaneManager : MonoBehaviour
     }
 
     // Calculates whether or not a span note is within the hit window
-    public bool IsSpanNoteHittable()
+    public bool IsSpanNoteHittable(Notes note)
     {
-        int noteTime = trackedNotes.Peek().trackedEvent.StartSample;
+        int noteTime = note.trackedEvent.StartSample;
         int curTime = gm.DelayedSampleTime;
         int hitWindow = gm.HitWindowSampleWidth;
 
@@ -375,12 +375,12 @@ public class LaneManager : MonoBehaviour
     }
 
     // Calculates whether or not a span note's end sample is within the hit window
-    public bool IsNoteEndHittable()
+    public bool IsNoteEndHittable(Notes note)
     {
         bool isHittable = false;
-        if (!trackedNotes.Peek().trackedEvent.IsOneOff())
+        if (!note.trackedEvent.IsOneOff())
         {
-            int noteTime = trackedNotes.Peek().trackedEvent.EndSample;
+            int noteTime = note.trackedEvent.EndSample;
             int curTime = gm.DelayedSampleTime;
             int hitWindow = gm.HitWindowSampleWidth;
 
@@ -391,13 +391,13 @@ public class LaneManager : MonoBehaviour
     }
 
     // Checks if a one off note is no longer able to be hit based on the given hit window
-    public bool IsNoteMissed()
+    public bool IsNoteMissed(Notes note)
     {
         bool isMissed = true;
 
         if (enabled)
         {
-            int noteTime = trackedNotes.Peek().trackedEvent.StartSample;
+            int noteTime = note.trackedEvent.StartSample;
             int curTime = gm.DelayedSampleTime;
             int hitWindow = gm.HitWindowSampleWidth;
 
@@ -408,12 +408,12 @@ public class LaneManager : MonoBehaviour
     }
 
     // Checks if a span note is no longer able to be hit based on the given hit window
-    public bool IsSpanNoteMissed()
+    public bool IsSpanNoteMissed(Notes note)
     {
         bool isMissed = true;
         if (enabled)
         {
-            int noteTime = trackedNotes.Peek().trackedEvent.EndSample;
+            int noteTime = note.trackedEvent.EndSample;
             int curTime = gm.DelayedSampleTime;
             int hitWindow = gm.HitWindowSampleWidth;
 
