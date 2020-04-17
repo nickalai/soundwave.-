@@ -139,31 +139,34 @@ public class LaneManager : MonoBehaviour
         {
             Notes curNote = trackedNotes.Peek();
 
-            if (IsOneOffNote(curNote) && IsNoteMissed(curNote))
+            if (curNote.transform.position.z <= DespawnZ)
             {
-                Debug.Log("Missed One off");
-                gm.comboCounter = 0;
-                trackedNotes.Dequeue();
+                if (IsOneOffNote(curNote) && IsNoteMissed(curNote))
+                {
+                    Debug.Log("Missed One off");
+                    gm.comboCounter = 0;
+                    trackedNotes.Dequeue();
+                }
+                else if (!IsOneOffNote(curNote) && IsSpanNoteMissed(curNote))
+                {
+                    Debug.Log("Missed Span");
+                    gm.comboCounter = 0;
+                    trackedNotes.Dequeue();
+                }
+                else
+                {
+                    break;
+                }
+                gm.ReturnNoteToPool(curNote);
+                curNote.Reset();
             }
-            else if (!IsOneOffNote(curNote) && IsSpanNoteMissed(curNote))
-            {
-                gm.comboCounter = 0;
-                trackedNotes.Dequeue();
-            }         
             else
             {
                 break;
             }
-            
         }
         
         CheckSpawnNext();
-        
-        if (trackedNotes.Count > 0 && trackedNotes.Peek().transform.position.z <= DespawnZ)
-        {
-            gm.ReturnNoteToPool(trackedNotes.Peek());
-            trackedNotes.Peek().Reset();
-        }
         
         // Checks for input
         if (Input.GetKeyDown(keyboardButton))
