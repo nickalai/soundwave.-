@@ -1,6 +1,6 @@
 # This file uses centimeters as units for non-parametric coordinates.
 
-mtllib Lane_1.mtl
+mtllib Lane.mtl
 g default
 v -0.156916 0.075995 0.000000
 v 0.000000 0.060540 0.000000
@@ -70,7 +70,7 @@ vn 0.980785 0.195090 0.000000
 vn 0.980785 0.195090 0.000000
 vn 0.980785 0.195090 0.000000
 s off
-g initialShadingGroup Lane
+g initialShadingGroup initialShadingGroupLane
 f 2/1/1 1/2/2 4/3/3 5/4/4
 f 3/5/5 2/1/6 5/4/7 6/6/8
 f 5/4/9 4/3/10 7/7/11 8/8/12
