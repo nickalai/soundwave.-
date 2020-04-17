@@ -24,6 +24,7 @@ public class Menu : MonoBehaviour
     {
         lc = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>();
     }
+<<<<<<< HEAD
 
     void Update() {
         if (Input.GetKeyDown("space")) {
@@ -31,6 +32,8 @@ public class Menu : MonoBehaviour
         }
 
     }
+=======
+>>>>>>> be89d22419e5954e78d5cf603884a0c72643df92
     // Quits the game
     public void Quit()
     {
