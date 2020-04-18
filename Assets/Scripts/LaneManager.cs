@@ -143,13 +143,11 @@ public class LaneManager : MonoBehaviour
             {
                 if (IsOneOffNote(curNote) && IsNoteMissed(curNote))
                 {
-                    Debug.Log("Missed One off");
                     gm.comboCounter = 0;
                     trackedNotes.Dequeue();
                 }
                 else if (!IsOneOffNote(curNote) && IsSpanNoteMissed(curNote))
                 {
-                    Debug.Log("Missed Span");
                     gm.comboCounter = 0;
                     trackedNotes.Dequeue();
                 }
