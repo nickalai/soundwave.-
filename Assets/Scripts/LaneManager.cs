@@ -164,19 +164,19 @@ public class LaneManager : MonoBehaviour
         CheckSpawnNext();
         
         // Checks for input
-        if (Input.GetKeyDown(keyboardButton))
+        if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.D))//Input.GetKeyDown(keyboardButton))
         {
             CheckNoteHit();
             OnHitMaterial();
         }
 
-        else if (Input.GetKey(keyboardButton))
+        else if (Input.GetKey(KeyCode.B) || Input.GetKey(KeyCode.D))//Input.GetKey(keyboardButton))
         {
             CheckSpanNoteHit();
             OnHitMaterial();
         }
 
-        else if (Input.GetKeyUp(keyboardButton))
+        else if (Input.GetKeyUp(KeyCode.B) || Input.GetKeyUp(KeyCode.D))//Input.GetKeyUp(keyboardButton))
         {
             ResetMaterial();
         }
@@ -276,21 +276,6 @@ public class LaneManager : MonoBehaviour
         for (int i = 0; i < matchedPayloads.Count; ++i)
         {
             if (payload == matchedPayloads[i])
-            {
-                isMatched = true;
-                break;
-            }
-        }
-        return isMatched;
-    }
-
-    // Checks to see if the string value passed in matches any of the configured values specified in the matchedPayloads list for HOLD notes.
-    public bool DoesMatchPayloadHold(string payload)
-    {
-        bool isMatched = false;
-        for (int i = 0; i < matchedPayloads.Count; ++i)
-        {
-            if (payload.Length == 2 && (payload.Substring(0, 1)) == matchedPayloads[i] && (payload.Substring(1, 1)) == "h")
             {
                 isMatched = true;
                 break;

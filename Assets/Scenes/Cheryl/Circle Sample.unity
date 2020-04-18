@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &13203063
 RectTransform:
   m_ObjectHideFlags: 0
@@ -607,7 +607,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.12156863, g: 0.12156863, b: 0.12156863, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -766,7 +766,7 @@ PrefabInstance:
         type: 3}
       propertyPath: koreography
       value: 
-      objectReference: {fileID: 11400000, guid: 7339d5ca62bf28845b5b698cdf1a2c64,
+      objectReference: {fileID: 11400000, guid: fa07cb1817f397f4cb3a820458a6f437,
         type: 2}
     - target: {fileID: 1381536615878140116, guid: b64c12340f1688642b273b9cd9f41714,
         type: 3}
@@ -1233,7 +1233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &623237943
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2209,9 +2209,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2af0cc8b0de2d44bb7c78b70cd4f58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: demo
+  eventID: CBEasy
   hitWindowRangeInMS: 80
-  noteSpeed: 15
+  noteSpeed: 8
   notePrefab: {fileID: 653869163419874767, guid: ab1b8b1ed1915c343bcab460f322d9df,
     type: 3}
   noteLanes:
@@ -8890,7 +8890,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9229,7 +9229,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

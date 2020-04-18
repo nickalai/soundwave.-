@@ -33,12 +33,12 @@ public class HitzoneController : MonoBehaviour
 
     void RotateZone()
     {
-        if (Input.GetAxisRaw("Horizontal") > 0)
+        if (Input.GetAxis("Mouse X") < 0)
         {
             transform.Rotate(Vector3.forward * rotationSensitivity * Time.deltaTime);
         }
 
-        else if (Input.GetAxisRaw("Vertical") < 0)
+        else if (Input.GetAxis("Mouse X") > 0)
         {
             transform.Rotate(-Vector3.forward * rotationSensitivity * Time.deltaTime);
         }

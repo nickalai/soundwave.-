@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
     {
         //chartToPlay = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>().chartToLoad;
         //smp.LoadSong(chartToPlay, 0, false);
+        Cursor.visible = false;
         InitializeLeadIn();
 
         // Init all Lanes.
@@ -142,12 +143,6 @@ public class GameManager : MonoBehaviour
                 if (lane.DoesMatchPayloadHit(payload))
                 {
                     // Adds object for input tracking.
-                    lane.AddEventToLane(evt);
-                    break;
-                }
-                else if (lane.DoesMatchPayloadHold(payload))
-                {
-                    //Adds object for input traccking.
                     lane.AddEventToLane(evt);
                     break;
                 }

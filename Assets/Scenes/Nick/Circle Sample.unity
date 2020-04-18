@@ -1722,9 +1722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2af0cc8b0de2d44bb7c78b70cd4f58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: CherryBlossomMedium
+  eventID: CBMedium
   hitWindowRangeInMS: 80
-  noteSpeed: 15
+  noteSpeed: 5
   notePrefab: {fileID: 653869163419874767, guid: ab1b8b1ed1915c343bcab460f322d9df,
     type: 3}
   noteLanes:

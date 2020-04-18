@@ -8,13 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Nick/Circle Sample.unity
     guid: 3b11fe755af616841a0130f2009e926f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Nick/Song Select.unity
     guid: a25e2b9c94357c9448497b34a5404f59
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Nick/Main Menu.unity
     guid: 0d15e62d323d3dc4e949b3d7801d9e7e
+  - enabled: 1
+    path: Assets/Scenes/Cheryl/Circle Sample.unity
+    guid: ea4991caeec4fad4e95f2ff8e946a83d
   m_configObjects: {}

@@ -136,17 +136,18 @@ namespace SonicBloom.Koreo.Demos
 			//  configured within the Inspector on the buttons themselves, using the same functions as
 			//  what is found here.  Touch input does not have a built-in concept of "Held", so it is not
 			//  currently supported.
-			if (Input.GetKeyDown(keyboardButton))
+			if (Input.GetKeyDown("B") || Input.GetKeyDown("D"))//keyboardButton))
 			{
 				CheckNoteHit();
 				SetScalePress();
 			}
-			else if (Input.GetKey(keyboardButton))
+			else if (Input.GetKey("B") || Input.GetKey("D"))//Input.GetKey(keyboardButton))
 			{
 				SetScaleHold();
 			}
-			else if (Input.GetKeyUp(keyboardButton))
-			{
+			else if (Input.GetKeyUp("B") || Input.GetKeyUp("D"))//Input.GetKeyUp(keyboardButton))
+
+            {
 				SetScaleDefault();
 			}
 		}
