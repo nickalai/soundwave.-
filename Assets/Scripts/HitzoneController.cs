@@ -35,12 +35,12 @@ public class HitzoneController : MonoBehaviour
     {
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            transform.RotateAround(centerPivot.position, Vector3.right, rotationSensitivity * Time.deltaTime);
+            transform.Rotate(Vector3.forward * rotationSensitivity * Time.deltaTime);
         }
 
         else if (Input.GetAxisRaw("Vertical") < 0)
         {
-            transform.RotateAround(centerPivot.position, Vector3.left, rotationSensitivity * Time.deltaTime);
+            transform.Rotate(-Vector3.forward * rotationSensitivity * Time.deltaTime);
         }
     }
 

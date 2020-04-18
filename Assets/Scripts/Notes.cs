@@ -122,7 +122,7 @@ public class Notes : MonoBehaviour
     // Span note scoring
     public void SpanNoteScore()
     {
-        scoreAmt += 100 * Time.deltaTime;
+        gm.currentScore += (int)(10 * Time.deltaTime);
     }
     
     #endregion
