@@ -47,9 +47,6 @@ public class LaneManager : MonoBehaviour
     // Feedback Scales used for resizing buttons on press.
     Vector3 defaultScale;
     Quaternion defaultRotation;
-    float scaleNormal = 1f;
-    float scalePress = 1.4f;
-    float scaleHold = 1.2f;
 
     // hit note materials
     public Material Note;
@@ -170,19 +167,17 @@ public class LaneManager : MonoBehaviour
         if (Input.GetKeyDown(keyboardButton))
         {
             CheckNoteHit();
-            //SetScalePress();
             OnHitMaterial();
         }
 
         else if (Input.GetKey(keyboardButton))
         {
-            SetScaleHold();
             CheckSpanNoteHit();
+            OnHitMaterial();
         }
 
         else if (Input.GetKeyUp(keyboardButton))
         {
-            SetScaleDefault();
             ResetMaterial();
         }
     }
@@ -219,18 +214,7 @@ public class LaneManager : MonoBehaviour
                     Notes curNote = trackedNotes.Dequeue();
                     curNote.OnHit();
                 }
-            }
-            
-            else if (!IsOneOffNote(hitNote))
-            {
-                if(IsSpanNoteHittable(hitNote))
-                {
-                    currentSpan = trackedNotes.Dequeue();
-                    currentSpan.InvokeRepeating("SpanNoteScore", 0, 0.1f);
-                    Debug.Log("Span hit");
-                }
-            }
-            
+            } 
         }
     }
 
@@ -239,25 +223,20 @@ public class LaneManager : MonoBehaviour
         if (trackedNotes.Count > 0 && controllerIsInLane)
         {
             Notes spanNote = trackedNotes.Peek();
-            if (spanNote == null)
-                return;
-            else if (!IsOneOffNote(spanNote))
+
+            if (!IsOneOffNote(spanNote))
             {
                 if (IsSpanNoteHittable(spanNote))
                 {
-                    currentSpan = trackedNotes.Dequeue();
-                    gm.comboCounter++;
-                    currentSpan.InvokeRepeating("SpanNoteScore", 0, 0.1f);
+                    //spanNote.OnHit();
                     Debug.Log("Span hit");
-                    if (currentSpan != null)
-                    {
-                        if (IsNoteEndHittable(spanNote))
-                        {
-                            Debug.Log("Good timing bonus");
-                        }
-                        currentSpan.CancelInvoke("SpanNoteScore");
-                        currentSpan = null;
-                    }
+                }
+
+                else if (IsNoteEndHittable(spanNote))
+                {
+                    currentSpan = trackedNotes.Dequeue();
+                    spanNote.OnHit();
+                    Debug.Log("Span end hit");  
                 }
             }
         }
@@ -318,24 +297,6 @@ public class LaneManager : MonoBehaviour
             }
         }
         return isMatched;
-    }
-
-    // Sets the Target scale to the original default scale.
-    public void SetScaleDefault()
-    {
-        AdjustScale(scaleNormal);
-    }
-
-    // Sets the Target scale to the specified "initially pressed" scale.
-    public void SetScalePress()
-    {
-        AdjustScale(scalePress);
-    }
-
-    // SEts the Target scale to the specified "continuously held" scale.
-    public void SetScaleHold()
-    {
-        AdjustScale(scaleHold);
     }
 
     // Sets target material to hit material
