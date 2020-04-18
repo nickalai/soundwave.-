@@ -108,7 +108,7 @@ public class Notes : MonoBehaviour
         gm.currentScore += gm.scorePerNote * gm.comboCounter;
 
         Vector3 pos = lm.TargetPosition;
-        GameObject effect = Instantiate(HitEffect_1, pos, Quaternion.identity);
+        GameObject effect = Instantiate(HitEffect_1, pos, lm.TargetRotation);
 
         ReturnToPool();
     }

@@ -10,7 +10,7 @@ Material:
   m_Name: Shader Graphs_Dome_Panning_shader_1
   m_Shader: {fileID: -6465566751694194690, guid: 303a8eecd2ea8164481771092c008060,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

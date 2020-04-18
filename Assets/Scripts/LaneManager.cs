@@ -125,7 +125,7 @@ public class LaneManager : MonoBehaviour
     {
         defaultScale = targetVisuals.transform.localScale;
         defaultRotation = targetVisuals.transform.rotation;
-        ResetMaterial();
+        //ResetMaterial();
     }
 
     // Update is called once per frame
@@ -302,12 +302,12 @@ public class LaneManager : MonoBehaviour
     // Sets target material to hit material
     public void OnHitMaterial() 
     {
-        this.gameObject.GetComponent<MeshRenderer>().material = hitNote;
+        //this.gameObject.GetComponent<MeshRenderer>().material = hitNote;
     }
 
     public void ResetMaterial() 
     {
-        this.gameObject.GetComponent<MeshRenderer>().material = Note;
+        //this.gameObject.GetComponent<MeshRenderer>().material = Note;
     }
 
     // Checks whether a note is a One Off or a Span Event
