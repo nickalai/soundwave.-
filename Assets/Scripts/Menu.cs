@@ -18,6 +18,13 @@ public class Menu : MonoBehaviour
 {
     public string levelToLoad;
 
+    //scene transition variables 
+
+        //get animator component
+    public Animator transition;
+        //set transition time 
+    public float transitionTime = 1f;
+
     LoadChart lc;
 
     void Start()
@@ -40,6 +47,13 @@ public class Menu : MonoBehaviour
     // Starts the game by loading the first level
     public void Play()
     {
+        StartCoroutine(LoadScene(levelToLoad));
+    }
+
+    //load scene and start transition animation
+    IEnumerator LoadScene(string levelToLoad) {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelToLoad);
     }
 
