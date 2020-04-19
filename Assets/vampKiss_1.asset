@@ -10,44 +10,54 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1223223985, guid: aa81bbec85a3f423193272a7c6154986, type: 3}
-  m_Name: seafoam_preview
+  m_Name: vampKiss_1
   m_EditorClassIdentifier: 
-  mEventID: seafoam_preview
+  mEventID: vampKiss_1
   mEventList:
-  - mStartSample: 33075
-    mEndSample: 33075
+  - mStartSample: 22050
+    mEndSample: 22050
+  - mStartSample: 38587
+    mEndSample: 55125
   - mStartSample: 66150
     mEndSample: 66150
-  - mStartSample: 77175
-    mEndSample: 77175
+  - mStartSample: 71662
+    mEndSample: 71662
+  - mStartSample: 88200
+    mEndSample: 88200
   - mStartSample: 110250
-    mEndSample: 110250
-  - mStartSample: 143325
-    mEndSample: 143325
+    mEndSample: 137812
   - mStartSample: 154350
     mEndSample: 154350
-  - mStartSample: 187425
-    mEndSample: 187425
+  - mStartSample: 165375
+    mEndSample: 165375
+  - mStartSample: 176400
+    mEndSample: 176400
   - mStartSample: 198450
     mEndSample: 198450
   - mStartSample: 220500
     mEndSample: 220500
+  - mStartSample: 237037
+    mEndSample: 237037
   - mStartSample: 253575
     mEndSample: 253575
   - mStartSample: 286650
     mEndSample: 286650
+  - mStartSample: 303187
+    mEndSample: 303187
   - mStartSample: 308700
     mEndSample: 308700
-  - mStartSample: 330750
-    mEndSample: 330750
+  - mStartSample: 325237
+    mEndSample: 325237
   - mStartSample: 341775
     mEndSample: 341775
-  - mStartSample: 374850
-    mEndSample: 374850
+  - mStartSample: 380362
+    mEndSample: 380362
   - mStartSample: 396900
     mEndSample: 396900
-  - mStartSample: 418950
-    mEndSample: 463050
+  - mStartSample: 407925
+    mEndSample: 407925
+  - mStartSample: 441000
+    mEndSample: 474075
   _SerializedPayloadTypes:
   - SonicBloom.Koreo.TextPayload
   _AssetPayloads: []
@@ -65,21 +75,26 @@ MonoBehaviour:
   _SpectrumPayloads: []
   _SpectrumPayloadIdxs: 
   _TextPayloads:
+  - mTextVal: 1
+  - mTextVal: 1
+  - mTextVal: 2
+  - mTextVal: 2
+  - mTextVal: 1
   - mTextVal: 15
-  - mTextVal: 15
+  - mTextVal: 16
+  - mTextVal: 16
   - mTextVal: 14
-  - mTextVal: 1
-  - mTextVal: 4
-  - mTextVal: 4
   - mTextVal: 8
-  - mTextVal: 7
-  - mTextVal: 6
-  - mTextVal: 7
-  - mTextVal: 1
-  - mTextVal: 4
-  - mTextVal: 4
-  - mTextVal: 4
+  - mTextVal: 8
+  - mTextVal: 8
   - mTextVal: 8
   - mTextVal: 9
-  - mTextVal: 10
-  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000
+  - mTextVal: 9
+  - mTextVal: 9
+  - mTextVal: 7
+  - mTextVal: 5
+  - mTextVal: 5
+  - mTextVal: 3
+  - mTextVal: 5
+  - mTextVal: 8
+  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000

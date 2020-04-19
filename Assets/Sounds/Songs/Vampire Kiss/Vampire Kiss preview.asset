@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eaad1da5a69c4dbfbc7ccb4bcb08e95, type: 3}
+  m_Name: Vampire Kiss preview
+  m_EditorClassIdentifier: 
+  mEventID: Vampire Kiss preview
+  mEventList:
+  - mStartSample: 22050
+    mEndSample: 22050
+  - mStartSample: 33075
+    mEndSample: 49612
+  - mStartSample: 66150
+    mEndSample: 66150
+  - mStartSample: 71662
+    mEndSample: 71662
+  - mStartSample: 88200
+    mEndSample: 88200
+  - mStartSample: 99225
+    mEndSample: 132300
+  - mStartSample: 154350
+    mEndSample: 154350
+  - mStartSample: 165375
+    mEndSample: 165375
+  - mStartSample: 176400
+    mEndSample: 176400
+  - mStartSample: 203962
+    mEndSample: 203962
+  - mStartSample: 220500
+    mEndSample: 220500
+  - mStartSample: 231525
+    mEndSample: 264600
+  - mStartSample: 275625
+    mEndSample: 275625
+  - mStartSample: 297675
+    mEndSample: 297675
+  - mStartSample: 308700
+    mEndSample: 308700
+  - mStartSample: 319725
+    mEndSample: 319725
+  - mStartSample: 325237
+    mEndSample: 325237
+  - mStartSample: 330750
+    mEndSample: 330750
+  - mStartSample: 341775
+    mEndSample: 374850
+  - mStartSample: 391387
+    mEndSample: 391387
+  - mStartSample: 413437
+    mEndSample: 413437
+  - mStartSample: 441000
+    mEndSample: 485100
+  _SerializedPayloadTypes:
+  - SonicBloom.Koreo.TextPayload
+  _AssetPayloads: []
+  _AssetPayloadIdxs: 
+  _ColorPayloads: []
+  _ColorPayloadIdxs: 
+  _CurvePayloads: []
+  _CurvePayloadIdxs: 
+  _FloatPayloads: []
+  _FloatPayloadIdxs: 
+  _GradientPayloads: []
+  _GradientPayloadIdxs: 
+  _IntPayloads: []
+  _IntPayloadIdxs: 
+  _SpectrumPayloads: []
+  _SpectrumPayloadIdxs: 
+  _TextPayloads:
+  - mTextVal: 1
+  - mTextVal: 1
+  - mTextVal: 1
+  - mTextVal: 1
+  - mTextVal: 14
+  - mTextVal: 15
+  - mTextVal: 10
+  - mTextVal: 11
+  - mTextVal: 10
+  - mTextVal: 8
+  - mTextVal: 8
+  - mTextVal: 8
+  - mTextVal: 6
+  - mTextVal: 6
+  - mTextVal: 5
+  - mTextVal: 5
+  - mTextVal: 4
+  - mTextVal: 3
+  - mTextVal: 3
+  - mTextVal: 1
+  - mTextVal: 2
+  - mTextVal: 15
+  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000
+  _MaterialPayloads: []
+  _MaterialPayloadIdxs: 
