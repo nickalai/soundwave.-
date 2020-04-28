@@ -54,7 +54,11 @@ public class LaneManager : MonoBehaviour
 
     Notes currentSpan = null;
     public bool controllerIsInLane;
-    
+
+    // Used for detecting front and end note hits for span notes
+    bool frontHit = false;
+    bool isScoring = false;
+    bool isHittingNote = false;
 
     #endregion
     #region Return Statements
@@ -131,6 +135,24 @@ public class LaneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Checks for input
+        if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.D))//Input.GetKeyDown(keyboardButton))
+        {
+            CheckNoteHit();
+            OnHitMaterial();
+        }
+
+        else if (Input.GetKey(KeyCode.B) || Input.GetKey(KeyCode.D))//Input.GetKey(keyboardButton))
+        {
+            CheckSpanNoteHit();
+            OnHitMaterial();
+        }
+
+        else if (Input.GetKeyUp(KeyCode.B) || Input.GetKeyUp(KeyCode.D))//Input.GetKeyUp(keyboardButton))
+        {
+            ResetMaterial();
+        }
+
         // Clears out invalid hit notes.     
         while (trackedNotes.Count > 0)
         {
@@ -160,26 +182,8 @@ public class LaneManager : MonoBehaviour
                 break;
             }
         }
-        
         CheckSpawnNext();
-        
-        // Checks for input
-        if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.D))//Input.GetKeyDown(keyboardButton))
-        {
-            CheckNoteHit();
-            OnHitMaterial();
-        }
-
-        else if (Input.GetKey(KeyCode.B) || Input.GetKey(KeyCode.D))//Input.GetKey(keyboardButton))
-        {
-            CheckSpanNoteHit();
-            OnHitMaterial();
-        }
-
-        else if (Input.GetKeyUp(KeyCode.B) || Input.GetKeyUp(KeyCode.D))//Input.GetKeyUp(keyboardButton))
-        {
-            ResetMaterial();
-        }
+        CheckSpanNoteMiss();
     }
 
     // Adjusts the scale with a multiplier against default scale.
@@ -221,25 +225,70 @@ public class LaneManager : MonoBehaviour
     public void CheckSpanNoteHit()
     {
         if (trackedNotes.Count > 0 && controllerIsInLane)
-        {
+        { 
             Notes spanNote = trackedNotes.Peek();
 
             if (!IsOneOffNote(spanNote))
             {
-                if (IsSpanNoteHittable(spanNote))
-                {
-                    //spanNote.OnHit();
-                    Debug.Log("Span hit");
-                }
-
-                else if (IsNoteEndHittable(spanNote))
+                if (IsNoteEndHittable(spanNote))
                 {
                     currentSpan = trackedNotes.Dequeue();
                     spanNote.OnHit();
-                    Debug.Log("Span end hit");  
+                    frontHit = false;
+                    CancelInvoke();
+                    isScoring = false;
+                    isHittingNote = false;
+                }
+
+                else if (IsNoteHittable(spanNote) && frontHit == false)
+                {
+                    isHittingNote = true;
+                    gm.comboCounter++;
+                    gm.currentScore += gm.scorePerNote * gm.comboCounter;
+                    frontHit = true;
+                    GameObject effect = Instantiate(spanNote.HitEffect_1, TargetPosition, TargetRotation);
+                }
+
+                else if (IsSpanNoteHittable(spanNote))
+                {
+                    isHittingNote = true;
+                    if (isScoring == false)
+                    {
+                        InvokeRepeating("SpanScore", 0, 0.1f);
+                        isScoring = true;
+                    }
+                }         
+            }
+        }
+    }
+
+    public void CheckSpanNoteMiss()
+    {
+        if (trackedNotes.Count > 0 && isHittingNote == true)
+        {
+            Notes spanNote = trackedNotes.Peek();
+            if (!IsOneOffNote(spanNote))
+            {
+                if (!controllerIsInLane)
+                {
+                    CancelInvoke();
+                    gm.comboCounter = 0;
+                    isHittingNote = false;
+                }
+
+                else if (Input.GetKeyUp(KeyCode.B) || Input.GetKeyUp(KeyCode.D))
+                {
+                    CancelInvoke();
+                    gm.comboCounter = 0;
+                    isHittingNote = false;
                 }
             }
         }
+    }
+    
+    public void SpanScore()
+    {
+        gm.currentScore += gm.scorePerNote * gm.comboCounter;
     }
 
     // Checks if the next Note should be spawned. If true, spawns the Note and adds it to trackedNotes.

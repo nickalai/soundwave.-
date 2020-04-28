@@ -110,6 +110,14 @@ public class GameManager : MonoBehaviour
 
     #endregion
     #region Methods
+    
+    /*
+    void Awake()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+    }
+    */
     // Start is called before the first frame update
     void Start()
     {

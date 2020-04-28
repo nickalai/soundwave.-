@@ -766,7 +766,7 @@ PrefabInstance:
         type: 3}
       propertyPath: koreography
       value: 
-      objectReference: {fileID: 11400000, guid: 6b0d2c639be0fcf4abb59ab672cf91e1,
+      objectReference: {fileID: 11400000, guid: 01ebf43d0aa8415459cc9a3cf0676ff8,
         type: 2}
     - target: {fileID: 1381536615878140119, guid: b64c12340f1688642b273b9cd9f41714,
         type: 3}
@@ -2219,7 +2219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2af0cc8b0de2d44bb7c78b70cd4f58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: Vampire Kiss preview
+  eventID: seafoam_preview
   hitWindowRangeInMS: 80
   noteSpeed: 10
   notePrefab: {fileID: 653869163419874767, guid: ab1b8b1ed1915c343bcab460f322d9df,
