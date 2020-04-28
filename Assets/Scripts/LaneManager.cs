@@ -129,7 +129,6 @@ public class LaneManager : MonoBehaviour
     {
         defaultScale = targetVisuals.transform.localScale;
         defaultRotation = targetVisuals.transform.rotation;
-        //ResetMaterial();
     }
 
     // Update is called once per frame
@@ -139,18 +138,11 @@ public class LaneManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.D))//Input.GetKeyDown(keyboardButton))
         {
             CheckNoteHit();
-            OnHitMaterial();
         }
 
         else if (Input.GetKey(KeyCode.B) || Input.GetKey(KeyCode.D))//Input.GetKey(keyboardButton))
         {
             CheckSpanNoteHit();
-            OnHitMaterial();
-        }
-
-        else if (Input.GetKeyUp(KeyCode.B) || Input.GetKeyUp(KeyCode.D))//Input.GetKeyUp(keyboardButton))
-        {
-            ResetMaterial();
         }
 
         // Clears out invalid hit notes.     
@@ -222,6 +214,7 @@ public class LaneManager : MonoBehaviour
         }
     }
 
+    // Logic for scoring and hitting span notes. Combo is given at the start and end samples.
     public void CheckSpanNoteHit()
     {
         if (trackedNotes.Count > 0 && controllerIsInLane)
@@ -230,6 +223,7 @@ public class LaneManager : MonoBehaviour
 
             if (!IsOneOffNote(spanNote))
             {
+                // Checks end sample
                 if (IsNoteEndHittable(spanNote))
                 {
                     currentSpan = trackedNotes.Dequeue();
@@ -239,7 +233,7 @@ public class LaneManager : MonoBehaviour
                     isScoring = false;
                     isHittingNote = false;
                 }
-
+                // Checks start sample
                 else if (IsNoteHittable(spanNote) && frontHit == false)
                 {
                     isHittingNote = true;
@@ -248,7 +242,7 @@ public class LaneManager : MonoBehaviour
                     frontHit = true;
                     GameObject effect = Instantiate(spanNote.HitEffect_1, TargetPosition, TargetRotation);
                 }
-
+                // Checks between start and end sample
                 else if (IsSpanNoteHittable(spanNote))
                 {
                     isHittingNote = true;
@@ -262,6 +256,7 @@ public class LaneManager : MonoBehaviour
         }
     }
 
+    // Checks for user error during a span note
     public void CheckSpanNoteMiss()
     {
         if (trackedNotes.Count > 0 && isHittingNote == true)
@@ -269,13 +264,14 @@ public class LaneManager : MonoBehaviour
             Notes spanNote = trackedNotes.Peek();
             if (!IsOneOffNote(spanNote))
             {
+                // Checks if player moved the indicator out of the span note 
                 if (!controllerIsInLane)
                 {
                     CancelInvoke();
                     gm.comboCounter = 0;
                     isHittingNote = false;
                 }
-
+                // Checks if the user let go of a key during a span note
                 else if (Input.GetKeyUp(KeyCode.B) || Input.GetKeyUp(KeyCode.D))
                 {
                     CancelInvoke();
@@ -286,6 +282,7 @@ public class LaneManager : MonoBehaviour
         }
     }
     
+    // Increments the span note's score. Used in an InvokeRepeating in CheckSpanNoteHit()
     public void SpanScore()
     {
         gm.currentScore += gm.scorePerNote * gm.comboCounter;
@@ -333,17 +330,8 @@ public class LaneManager : MonoBehaviour
         return isMatched;
     }
 
-    // Sets target material to hit material
-    public void OnHitMaterial() 
-    {
-        //this.gameObject.GetComponent<MeshRenderer>().material = hitNote;
-    }
-
-    public void ResetMaterial() 
-    {
-        //this.gameObject.GetComponent<MeshRenderer>().material = Note;
-    }
-
+    #endregion
+    #region Note Hit and Miss Calculations
     // Checks whether a note is a One Off or a Span Event
     public bool IsOneOffNote(Notes note)
     {

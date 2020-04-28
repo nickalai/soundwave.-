@@ -19,18 +19,13 @@ public class HitzoneController : MonoBehaviour
 
     #endregion
     #region Methods
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
         RotateZone();
     }
 
+    // Rotates the indicator
     void RotateZone()
     {
         if (Input.GetAxis("Mouse X") < 0)
@@ -47,4 +42,3 @@ public class HitzoneController : MonoBehaviour
     #endregion
 }
 
-// https://en.wikipedia.org/wiki/Tempest_(video_game) casual plug for free boomer points
