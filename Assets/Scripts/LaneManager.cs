@@ -155,11 +155,13 @@ public class LaneManager : MonoBehaviour
                 if (IsOneOffNote(curNote) && IsNoteMissed(curNote))
                 {
                     gm.comboCounter = 0;
+                    gm.misses++;
                     trackedNotes.Dequeue();
                 }
                 else if (!IsOneOffNote(curNote) && IsSpanNoteMissed(curNote))
                 {
                     gm.comboCounter = 0;
+                    gm.misses++;
                     trackedNotes.Dequeue();
                 }
                 else
@@ -270,6 +272,7 @@ public class LaneManager : MonoBehaviour
                     CancelInvoke();
                     gm.comboCounter = 0;
                     isHittingNote = false;
+                    gm.misses++;
                 }
                 // Checks if the user let go of a key during a span note
                 else if (Input.GetKeyUp(KeyCode.B) || Input.GetKeyUp(KeyCode.D))
@@ -277,6 +280,7 @@ public class LaneManager : MonoBehaviour
                     CancelInvoke();
                     gm.comboCounter = 0;
                     isHittingNote = false;
+                    gm.misses++;
                 }
             }
         }

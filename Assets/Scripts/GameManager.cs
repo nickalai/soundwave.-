@@ -55,12 +55,14 @@ public class GameManager : MonoBehaviour
     public int currentScore = 0;
     public int scorePerNote = 300;
     public int comboCounter = 0;
+    public int misses = 0;
 
     // Pool for containing Notes to reduce unnecessary Instatiation/Destruction.
     Stack<Notes> notePool = new Stack<Notes>();
 
     public SimpleMusicPlayer smp;
     public Koreography chartToPlay;
+    ScoreDDOL sddol;
     
     #endregion
     #region Return Statements
@@ -114,6 +116,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sddol = GameObject.FindGameObjectWithTag("ScoreDDOL").GetComponent<ScoreDDOL>();
+        sddol.highestCombo = 0;
         //chartToPlay = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>().chartToLoad;
         //smp.LoadSong(chartToPlay, 0, false);
         Cursor.visible = false;

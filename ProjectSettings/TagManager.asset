@@ -8,6 +8,7 @@ TagManager:
   - ChartLoader
   - MusicPlayback
   - Zone
+  - ScoreDDOL
   layers:
   - Default
   - TransparentFX
