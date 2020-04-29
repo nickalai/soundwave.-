@@ -61,6 +61,5 @@ public class Menu : MonoBehaviour
     {
         lc.chartToLoad = chart.koreo;
         lc.eventIDToLoad = chart.eventID;
-        SceneManager.LoadScene("Circle Sample");
     }
 }
