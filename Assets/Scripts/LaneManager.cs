@@ -289,7 +289,10 @@ public class LaneManager : MonoBehaviour
     // Increments the span note's score. Used in an InvokeRepeating in CheckSpanNoteHit()
     public void SpanScore()
     {
-        gm.currentScore += gm.scorePerNote * gm.comboCounter;
+        if (gm.comboCounter == 0)
+            gm.currentScore += gm.scorePerNote;
+        else
+            gm.currentScore += gm.scorePerNote * gm.comboCounter;
     }
 
     // Checks if the next Note should be spawned. If true, spawns the Note and adds it to trackedNotes.

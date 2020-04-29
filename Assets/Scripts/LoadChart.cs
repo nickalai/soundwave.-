@@ -7,6 +7,7 @@ public class LoadChart : MonoBehaviour
 {
     public static LoadChart instance;
     public Koreography chartToLoad;
+    public string eventIDToLoad;
 
     void Awake()
     {
