@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -766,13 +766,13 @@ PrefabInstance:
         type: 3}
       propertyPath: koreography
       value: 
-      objectReference: {fileID: 11400000, guid: 01ebf43d0aa8415459cc9a3cf0676ff8,
+      objectReference: {fileID: 11400000, guid: e467057ac3dcde8469ef4648d8757f24,
         type: 2}
     - target: {fileID: 1381536615878140119, guid: b64c12340f1688642b273b9cd9f41714,
         type: 3}
       propertyPath: targetKoreographer
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1300723824}
     - target: {fileID: 1381536615878140119, guid: b64c12340f1688642b273b9cd9f41714,
         type: 3}
       propertyPath: autoPlayOnAwake
@@ -782,6 +782,11 @@ PrefabInstance:
         type: 3}
       propertyPath: eventDelayInSeconds
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381536615878140118, guid: b64c12340f1688642b273b9cd9f41714,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b64c12340f1688642b273b9cd9f41714, type: 3}
@@ -2219,7 +2224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2af0cc8b0de2d44bb7c78b70cd4f58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: 
+  eventID: BYMEasy
   hitWindowRangeInMS: 80
   noteSpeed: 10
   notePrefab: {fileID: 653869163419874767, guid: ab1b8b1ed1915c343bcab460f322d9df,
@@ -2248,7 +2253,7 @@ MonoBehaviour:
   comboCounter: 0
   misses: 0
   smp: {fileID: 314587918}
-  chartToPlay: {fileID: 0}
+  chartToPlay: {fileID: 11400000, guid: e467057ac3dcde8469ef4648d8757f24, type: 2}
 --- !u!4 &973986322
 Transform:
   m_ObjectHideFlags: 0
@@ -2824,6 +2829,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1300723824 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1381536615878140116, guid: b64c12340f1688642b273b9cd9f41714,
+    type: 3}
+  m_PrefabInstance: {fileID: 314587917}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 316907577, guid: 7ab44e72661444ea4b3b72f155c6ecea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1317225203
 GameObject:
   m_ObjectHideFlags: 0
