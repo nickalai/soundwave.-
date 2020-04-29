@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
         sddol = GameObject.FindGameObjectWithTag("ScoreDDOL").GetComponent<ScoreDDOL>();
         sddol.highestCombo = 0;
         //chartToPlay = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>().chartToLoad;
+        //eventID = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>().eventIDToLoad;
         //smp.LoadSong(chartToPlay, 0, false);
         Cursor.visible = false;
         InitializeLeadIn();

@@ -18,6 +18,7 @@ public class Chart : ScriptableObject
     public int ID;
     public string songName;
     public Koreography koreo;
+    public string eventID;
 
     public string difficulty;
     public int difficultyNum;
