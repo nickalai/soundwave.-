@@ -135,12 +135,12 @@ public class LaneManager : MonoBehaviour
     void Update()
     {
         // Checks for input
-        if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.D))//Input.GetKeyDown(keyboardButton))
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X))//Input.GetKeyDown(keyboardButton))
         {
             CheckNoteHit();
         }
 
-        else if (Input.GetKey(KeyCode.B) || Input.GetKey(KeyCode.D))//Input.GetKey(keyboardButton))
+        else if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.X))//Input.GetKey(keyboardButton))
         {
             CheckSpanNoteHit();
         }
@@ -275,7 +275,7 @@ public class LaneManager : MonoBehaviour
                     gm.misses++;
                 }
                 // Checks if the user let go of a key during a span note
-                else if (Input.GetKeyUp(KeyCode.B) || Input.GetKeyUp(KeyCode.D))
+                else if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.X))
                 {
                     CancelInvoke();
                     gm.comboCounter = 0;

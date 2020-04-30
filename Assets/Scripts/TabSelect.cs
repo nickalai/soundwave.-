@@ -37,7 +37,7 @@ public class TabSelect : MonoBehaviour
        // Debug.Log(Input.GetAxis("Horizontal"));
 
         if (!isIncrementing) {
-            InvokeRepeating("GetInput", 0, 0.5f);
+            InvokeRepeating("GetInput", 0, 0.3f);
             isIncrementing = true;
         }
 

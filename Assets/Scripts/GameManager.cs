@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
     public SimpleMusicPlayer smp;
     public Koreography chartToPlay;
     ScoreDDOL sddol;
+    public int trackLengthInSamples;
+    public bool isPlaying = true;
     
     #endregion
     #region Return Statements
@@ -132,6 +134,7 @@ public class GameManager : MonoBehaviour
 
         // Init events.
         playingKoreo = Koreographer.Instance.GetKoreographyAtIndex(0);
+        trackLengthInSamples = playingKoreo.SourceClip.samples;
 
         // Grab all events from Koreography.
         KoreographyTrackBase rhythmTrack = playingKoreo.GetTrackByID(eventID);
@@ -197,6 +200,12 @@ public class GameManager : MonoBehaviour
                 timeLeftToPlay = 0f;
             }
         }
+
+        if (playingKoreo.GetLatestSampleTime() >= trackLengthInSamples - 44100 && isPlaying)
+        {
+            Invoke("SceneChange", 3f);
+            isPlaying = false;
+        }
     }
 
     // Update any internal values that depend on externally accessible fields (public/inspector).
@@ -258,5 +267,9 @@ public class GameManager : MonoBehaviour
         InitializeLeadIn();
     }
 
+    void SceneChange()
+    {
+        Debug.Log("End of song reached");
+    }
     #endregion
 }
