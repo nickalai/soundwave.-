@@ -21,6 +21,7 @@ public class Notes : MonoBehaviour
     LaneManager lm;
     GameManager gm;
     public GameObject HitEffect_1;
+    public GameObject HitEffect_2;
 
     public float scoreAmt;
 

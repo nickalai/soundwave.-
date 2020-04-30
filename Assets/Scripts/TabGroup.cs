@@ -10,9 +10,17 @@ public class TabGroup : MonoBehaviour
     public List<GameObject> objectsToSwap;
     public TabSelect tabSelect;
 
+    public ChartDisplay chartDis;
+
+    LoadChart lc;
+
     //change sprites
     public Sprite tabActive;
     public Sprite tabIdle;
+
+    public void Start() {
+        lc = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>();
+    }
 
     public void Subscribe(TabButton button) {
         if(tabButtons == null) { 
@@ -51,6 +59,11 @@ public class TabGroup : MonoBehaviour
         for (int i=0; i < objectsToSwap.Count; i++) {
             if (i == index) {
                 objectsToSwap[i].SetActive(true);
+                chartDis = objectsToSwap[i].GetComponent<ChartDisplay>();
+                lc.setChart(chartDis.chart);
+               
+                //lc.chartToLoad = objectsToSwap[i].GetComponent<ChartDisplay>().chart.koreo;
+                //lc.eventIDToLoad = objectsToSwap[i].GetComponent<ChartDisplay>().chart.eventID;
             }
             else {
                 objectsToSwap[i].SetActive(false);

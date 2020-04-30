@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c97fe2b88252c41a5e78f9ccf661da, type: 3}
+  m_Name: Between You and Me
+  m_EditorClassIdentifier: 
+  ID: 1
+  songName: Between You and Me
+  koreo: {fileID: 11400000, guid: e467057ac3dcde8469ef4648d8757f24, type: 2}
+  eventID: BYMEasy
+  difficulty: Easy
+  difficultyNum: 5
+  highScore: 0
+  completed: 0
+  songThumbnail: {fileID: 0}

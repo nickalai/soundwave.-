@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c97fe2b88252c41a5e78f9ccf661da, type: 3}
+  m_Name: Cherry Blossom
+  m_EditorClassIdentifier: 
+  ID: 0
+  songName: Cherry Blossom
+  koreo: {fileID: 11400000, guid: fa07cb1817f397f4cb3a820458a6f437, type: 2}
+  eventID: CBMedium
+  difficulty: Medium
+  difficultyNum: 10
+  highScore: 999996
+  completed: 1
+  songThumbnail: {fileID: 2800000, guid: bb111654e9f452b499ba9c9f03eb0660, type: 3}

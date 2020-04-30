@@ -133,8 +133,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToLoad: Song Select
+  levelToBack: 
   transition: {fileID: 7242230448314518872}
   transitionTime: 1
+  selectKey: 
 --- !u!1 &7242230448314518874
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,7 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7242230448314518875}
   - component: {fileID: 7242230448314518872}
-  - component: {fileID: 7242230448314518873}
+  - component: {fileID: 223521052705583158}
   m_Layer: 0
   m_Name: Transition
   m_TagString: Untagged
@@ -187,7 +189,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7242230448314518873
+--- !u!114 &223521052705583158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,7 +198,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7242230448314518874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7adf82e4155c627459f4c5a6c9becd79, type: 3}
+  m_Script: {fileID: 11500000, guid: eb6b08fc4f3760c409cfd4e76521cac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 0}
+  animList: []

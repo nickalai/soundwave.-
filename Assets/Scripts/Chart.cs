@@ -24,4 +24,6 @@ public class Chart : ScriptableObject
     public int difficultyNum;
     public int highScore;
     public bool completed;
+
+    public Texture songThumbnail;
 }

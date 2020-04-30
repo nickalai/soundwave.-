@@ -289,10 +289,14 @@ public class LaneManager : MonoBehaviour
     // Increments the span note's score. Used in an InvokeRepeating in CheckSpanNoteHit()
     public void SpanScore()
     {
+        Notes spanNote = trackedNotes.Peek();
         if (gm.comboCounter == 0)
             gm.currentScore += gm.scorePerNote;
         else
             gm.currentScore += gm.scorePerNote * gm.comboCounter;
+
+        //Span hold effect 
+        GameObject spanEffect = Instantiate(spanNote.HitEffect_2, TargetPosition, TargetRotation);
     }
 
     // Checks if the next Note should be spawned. If true, spawns the Note and adds it to trackedNotes.

@@ -11,6 +11,7 @@ public class ChartDisplay : MonoBehaviour
     public Text chartDifficultyNum;
     public Text chartHighScore;
     public GameObject completedChart;
+    public Texture chartImage;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class ChartDisplay : MonoBehaviour
         chartDifficulty.text = chart.difficulty;
         chartDifficultyNum.text = chart.difficultyNum.ToString();
         chartHighScore.text = chart.highScore.ToString();
+        chartImage = chart.songThumbnail;
         if (chart.completed == true)
         {
             completedChart.SetActive(true);

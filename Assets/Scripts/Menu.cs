@@ -17,13 +17,15 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public string levelToLoad;
+    public string levelToBack;
 
     //scene transition variables 
 
-        //get animator component
+    //get animator component
     public Animator transition;
         //set transition time 
     public float transitionTime = 1f;
+    public string selectKey;
 
     LoadChart lc;
 
@@ -32,8 +34,12 @@ public class Menu : MonoBehaviour
         lc = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>();
     }
     void Update() {
-        if (Input.GetKeyDown("space")) {
-            Play();
+        if (Input.GetKeyDown("z") || Input.GetKeyDown("x")) {
+            Play(levelToLoad);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Play(levelToBack);
         }
 
     }
@@ -44,10 +50,10 @@ public class Menu : MonoBehaviour
         Application.Quit();
     }
 
-    // Starts the game by loading the first level
-    public void Play()
+    // Starts the game by loading the level
+    public void Play(string Scene)
     {
-        StartCoroutine(LoadScene(levelToLoad));
+        StartCoroutine(LoadScene(Scene));
     }
 
     //load scene and start transition animation

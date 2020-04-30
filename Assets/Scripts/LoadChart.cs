@@ -8,6 +8,7 @@ public class LoadChart : MonoBehaviour
     public static LoadChart instance;
     public Koreography chartToLoad;
     public string eventIDToLoad;
+    public Chart current;
 
     void Awake()
     {
@@ -21,5 +22,10 @@ public class LoadChart : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void setChart(Chart chart) {
+        chartToLoad = chart.koreo;
+        eventIDToLoad = chart.eventID;
     }
 }

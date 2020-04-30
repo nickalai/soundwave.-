@@ -97,4 +97,6 @@ MonoBehaviour:
     mEndSample: 0
   HitEffect_1: {fileID: 5227569752316113758, guid: 4baf66c675f325c45bf115197ecd86c5,
     type: 3}
+  HitEffect_2: {fileID: 7443358501793950987, guid: 69f22d47c6a39284ebdfce1d19bb91a2,
+    type: 3}
   scoreAmt: 0
