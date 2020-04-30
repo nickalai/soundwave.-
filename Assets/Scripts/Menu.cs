@@ -34,7 +34,7 @@ public class Menu : MonoBehaviour
         lc = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>();
     }
     void Update() {
-        if (Input.GetKeyDown("z") || Input.GetKeyDown("x")) {
+        if (Input.GetKeyDown(KeyCode.Return)) {
             Play(levelToLoad);
         }
 
