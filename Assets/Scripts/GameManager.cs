@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
 using SonicBloom.Koreo.Players;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
     public SimpleMusicPlayer smp;
     public Koreography chartToPlay;
     ScoreDDOL sddol;
+    Menu ll;
     public int trackLengthInSamples;
     public bool isPlaying = true;
     
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ll = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<Menu>();
         sddol = GameObject.FindGameObjectWithTag("ScoreDDOL").GetComponent<ScoreDDOL>();
         sddol.highestCombo = 0;
         chartToPlay = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>().chartToLoad;
@@ -269,7 +272,14 @@ public class GameManager : MonoBehaviour
 
     void SceneChange()
     {
-        Debug.Log("End of song reached");
+        StartCoroutine(LoadScoreScene("Score Screen"));
+    }
+
+    IEnumerator LoadScoreScene(string levelToLoad)
+    {
+        ll.transition.SetTrigger("Start");
+        yield return new WaitForSeconds(ll.transitionTime);
+        SceneManager.LoadScene(levelToLoad);
     }
     #endregion
 }

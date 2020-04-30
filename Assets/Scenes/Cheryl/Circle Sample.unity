@@ -2423,6 +2423,8 @@ MonoBehaviour:
   misses: 0
   smp: {fileID: 314587918}
   chartToPlay: {fileID: 0}
+  trackLengthInSamples: 0
+  isPlaying: 1
 --- !u!4 &973986322
 Transform:
   m_ObjectHideFlags: 0
@@ -9411,6 +9413,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Loader
       objectReference: {fileID: 0}
+    - target: {fileID: 7242230447953971582, guid: 0730035412bec1244807d7861e4a8949,
+        type: 3}
+      propertyPath: m_TagString
+      value: LevelLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242230447953971583, guid: 0730035412bec1244807d7861e4a8949,
+        type: 3}
+      propertyPath: selectKey
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242230447953971583, guid: 0730035412bec1244807d7861e4a8949,
+        type: 3}
+      propertyPath: levelToLoad
+      value: Score Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242230447953971583, guid: 0730035412bec1244807d7861e4a8949,
+        type: 3}
+      propertyPath: levelToBack
+      value: Song Select
+      objectReference: {fileID: 0}
     - target: {fileID: 7242230447953971580, guid: 0730035412bec1244807d7861e4a8949,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9465,21 +9487,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7242230447953971583, guid: 0730035412bec1244807d7861e4a8949,
-        type: 3}
-      propertyPath: selectKey
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7242230447953971583, guid: 0730035412bec1244807d7861e4a8949,
-        type: 3}
-      propertyPath: levelToLoad
-      value: Score Screen
-      objectReference: {fileID: 0}
-    - target: {fileID: 7242230447953971583, guid: 0730035412bec1244807d7861e4a8949,
-        type: 3}
-      propertyPath: levelToBack
-      value: Song Select
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0730035412bec1244807d7861e4a8949, type: 3}

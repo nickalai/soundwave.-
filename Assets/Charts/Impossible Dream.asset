@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 2
   songName: Impossible Dream
   koreo: {fileID: 11400000, guid: 0098341316bdcfe48acecbb2d1b6247c, type: 2}
-  eventID: 
+  eventID: IDEasy
   difficulty: Medium
   difficultyNum: 8
   highScore: 0

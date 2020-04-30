@@ -9,6 +9,7 @@ TagManager:
   - MusicPlayback
   - Zone
   - ScoreDDOL
+  - LevelLoader
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 0
   songName: Cherry Blossom
   koreo: {fileID: 11400000, guid: fa07cb1817f397f4cb3a820458a6f437, type: 2}
-  eventID: CBMedium
+  eventID: CBEasy
   difficulty: Medium
   difficultyNum: 10
   highScore: 999996
