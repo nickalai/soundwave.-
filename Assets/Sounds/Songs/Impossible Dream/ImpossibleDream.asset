@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: -2076007791, guid: aa81bbec85a3f423193272a7c6154986, type: 3}
   m_Name: ImpossibleDream
   m_EditorClassIdentifier: 
-  mSourceClip: {fileID: 8300000, guid: 93646418b347f374b801d270b774bb7a, type: 3}
+  mSourceClip: {fileID: 8300000, guid: 8ef719ffad9c5184e993394565484281, type: 3}
   mAudioFilePath: 
   mSampleRate: 44100
   mIgnoreLatencyOffset: 0
   mTempoSections:
-  - sectionName: New Section
+  - sectionName: IDEasy
     startSample: 0
-    samplesPerBeat: 22050
+    samplesPerBeat: 15120
     beatsPerMeasure: 4
     bStartNewMeasure: 1
   mTracks:
-  - {fileID: 11400000, guid: 6e81e010d716a7b48b2a714b772fc0f2, type: 2}
+  - {fileID: 11400000, guid: 0c8506464639a8848b97b0a5b0783303, type: 2}
