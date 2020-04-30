@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1722,7 +1722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2af0cc8b0de2d44bb7c78b70cd4f58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: CBMedium
+  eventID: IDEasy
   hitWindowRangeInMS: 80
   noteSpeed: 5
   notePrefab: {fileID: 653869163419874767, guid: ab1b8b1ed1915c343bcab460f322d9df,
@@ -1749,8 +1749,9 @@ MonoBehaviour:
   currentScore: 0
   scorePerNote: 100
   comboCounter: 0
+  misses: 0
   smp: {fileID: 314587918}
-  chartToPlay: {fileID: 0}
+  chartToPlay: {fileID: 11400000, guid: 0098341316bdcfe48acecbb2d1b6247c, type: 2}
 --- !u!4 &973986322
 Transform:
   m_ObjectHideFlags: 0
