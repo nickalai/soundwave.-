@@ -16,6 +16,7 @@ public class TabSelect : MonoBehaviour
     private float targetAngle = 0;
     private float angleAmount;
     public bool loading = false;
+    public bool isIncrementing = false;
 
     public AnimCheck animCheck;
 
@@ -35,9 +36,16 @@ public class TabSelect : MonoBehaviour
     private void Update() {
        // Debug.Log(Input.GetAxis("Horizontal"));
 
+        if (!isIncrementing) {
+            InvokeRepeating("GetInput", 0, 0.5f);
+            isIncrementing = true;
+        }
+
+        /*
         if (Input.GetAxis("Horizontal") < 0.05 && Input.GetAxis("Horizontal") > -0.05 ) {
             GetInput();
         }
+        */
     }
 
     void CreateQuatList() {
@@ -51,11 +59,11 @@ public class TabSelect : MonoBehaviour
     public void GetInput() {
         loading = true;
         //going to the right, positive
-        if (Input.GetAxis("Horizontal")  > 0) {
+        if (Input.GetAxis("Mouse X")  > 0) {
             ShiftRight();
         }
         //going to the left, negative
-        else if (Input.GetAxis("Horizontal") < 0) {
+        else if (Input.GetAxis("Mouse X") < 0) {
             ShiftLeft();
         }   
     }
