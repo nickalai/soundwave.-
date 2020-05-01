@@ -28,18 +28,15 @@ public class ScoreDDOL : MonoBehaviour
 
     void Start()
     {
-        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        
     }
 
     void Update()
     {
-        ComboCheck();
-        currentCombo = gm.comboCounter;
-        totalMisses = gm.misses;
-        score = gm.currentScore;
+        
     }
 
-    void ComboCheck()
+    public void ComboCheck()
     {
         if (currentCombo > highestCombo)
             highestCombo = currentCombo;

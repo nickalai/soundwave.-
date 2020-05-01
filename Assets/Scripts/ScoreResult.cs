@@ -17,6 +17,6 @@ public class ScoreResult : MonoBehaviour
 
     void assignText() {
         score.text = sDDOL.score.ToString();
-        combo.text = sDDOL.currentCombo.ToString();
+        combo.text = sDDOL.highestCombo.ToString();
     }
 }

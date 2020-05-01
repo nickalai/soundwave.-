@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     public SimpleMusicPlayer smp;
     public Koreography chartToPlay;
-    ScoreDDOL sddol;
+    public ScoreDDOL sddol;
     Menu ll;
     public int trackLengthInSamples;
     public bool isPlaying = true;
@@ -120,12 +120,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ll = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<Menu>();
-        sddol = GameObject.FindGameObjectWithTag("ScoreDDOL").GetComponent<ScoreDDOL>();
-        sddol.highestCombo = 0;
         chartToPlay = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>().chartToLoad;
         eventID = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>().eventIDToLoad;
         smp.LoadSong(chartToPlay, 0, false);
+        ll = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<Menu>();
+        sddol = GameObject.FindGameObjectWithTag("ScoreDDOL").GetComponent<ScoreDDOL>();
+        sddol.highestCombo = 0;
         Cursor.visible = false;
         InitializeLeadIn();
 
@@ -184,6 +184,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateInternalValues();
+        UpdateScoreDDOL();
         // Countdown some of lead-in time.
         if(leadInTimeLeft > 0f)
         {
@@ -280,6 +281,14 @@ public class GameManager : MonoBehaviour
         ll.transition.SetTrigger("Start");
         yield return new WaitForSeconds(ll.transitionTime);
         SceneManager.LoadScene(levelToLoad);
+    }
+
+    void UpdateScoreDDOL()
+    {
+        sddol.ComboCheck();
+        sddol.currentCombo = comboCounter;
+        sddol.totalMisses = misses;
+        sddol.score = currentScore;
     }
     #endregion
 }

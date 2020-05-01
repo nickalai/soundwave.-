@@ -32,6 +32,7 @@ public class Menu : MonoBehaviour
     void Start()
     {
         lc = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>();
+        Cursor.visible = false;
     }
     void Update() {
         if (Input.GetKeyDown(KeyCode.Return)) {
