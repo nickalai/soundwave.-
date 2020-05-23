@@ -22,6 +22,8 @@ public class Notes : MonoBehaviour
     GameManager gm;
     public GameObject HitEffect_1;
     public GameObject HitEffect_2;
+    public AudioClip sound;
+    public AudioSource source { get { return GetComponent<AudioSource>(); } }
 
     public float scoreAmt;
 
@@ -37,6 +39,11 @@ public class Notes : MonoBehaviour
 
     #endregion
     #region Methods
+
+    void Start() {
+        source.clip = sound;
+        source.playOnAwake = false;
+    }
     // Prepares note for use
     public void InitializeNote(KoreographyEvent evt, LaneManager laneManager, GameManager gameManager)
     {
@@ -105,6 +112,7 @@ public class Notes : MonoBehaviour
     // Performs action when a note is hit
     public void OnHit()
     {
+        HitSound();
         gm.comboCounter++;
         gm.currentScore += gm.scorePerNote * gm.comboCounter;
 
@@ -125,6 +133,10 @@ public class Notes : MonoBehaviour
     {
         gm.currentScore += (int)(10 * Time.deltaTime);
     }
-    
+
+    void HitSound() {
+        source.PlayOneShot(sound);
+    }
+
     #endregion
 }

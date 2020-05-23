@@ -26,6 +26,9 @@ public class Menu : MonoBehaviour
         //set transition time 
     public float transitionTime = 1f;
     public string selectKey;
+    //sound clip
+    public AudioClip sound;
+    public AudioSource source { get { return GetComponent<AudioSource>(); } }
 
     LoadChart lc;
 
@@ -33,6 +36,11 @@ public class Menu : MonoBehaviour
     {
         lc = GameObject.FindGameObjectWithTag("ChartLoader").GetComponent<LoadChart>();
         Cursor.visible = false;
+
+        //set up audio
+        //gameObject.AddComponent<AudioSource>();
+        source.clip = sound;
+        source.playOnAwake = false;
     }
     void Update() {
         if (Input.GetKeyDown(KeyCode.Return)) {
@@ -60,6 +68,7 @@ public class Menu : MonoBehaviour
     //load scene and start transition animation
     IEnumerator LoadScene(string levelToLoad) {
         transition.SetTrigger("Start");
+        PlaySound();
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelToLoad);
     }
@@ -68,5 +77,9 @@ public class Menu : MonoBehaviour
     {
         lc.chartToLoad = chart.koreo;
         lc.eventIDToLoad = chart.eventID;
+    }
+
+    void PlaySound() {
+        source.PlayOneShot(sound);
     }
 }

@@ -20,6 +20,10 @@ public class TabSelect : MonoBehaviour
 
     public AnimCheck animCheck;
 
+    //sound
+    public AudioClip sound;
+    public AudioSource source { get { return GetComponent<AudioSource>(); } }
+
 
     // Start is called before the first frame update
     void Start(){
@@ -31,6 +35,9 @@ public class TabSelect : MonoBehaviour
         Debug.Log("current Tab = " + currentTab);
 
         CreateQuatList();
+
+        source.clip = sound;
+        source.playOnAwake = false;
     }
 
     private void Update() {
@@ -72,6 +79,7 @@ public class TabSelect : MonoBehaviour
         //increment by 1 
         int prevTab = currentTab;
         if (currentTab > -1 && currentTab < tabs -1) {
+            PlaySound();
             currentTab++;
             //transform.rotation = Quaternion.Slerp(rotList[prevTab], rotList[currentTab], 0.2f);
             transform.Rotate(Vector3.forward * Time.deltaTime * 60);
@@ -82,9 +90,14 @@ public class TabSelect : MonoBehaviour
         //decrement by 1 
         int prevTab = currentTab;
         if (currentTab > 0 && currentTab < tabs) {
+            PlaySound();
             currentTab--;
             //transform.rotation = Quaternion.Slerp(rotList[prevTab], rotList[currentTab], 0.2f);
             transform.Rotate(-Vector3.forward * Time.deltaTime * 60);
         }
+    }
+
+    void PlaySound() {
+        source.PlayOneShot(sound);
     }
 }
